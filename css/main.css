@@ -1,0 +1,134 @@
+/*Additional reset*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+span,div,a,header,section,article,footer
+{
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration:none;
+}
+
+a:hover {
+    color:green;
+}
+
+html
+{
+    overflow:hidden;
+}
+
+h1,h2,h3
+{
+    margin:0;
+}
+
+h1 {font-size:1.50em}
+h2 {font-size:1.35em}
+h3 {font-size:1.10em}
+
+
+/* Main modifiers / Classes */
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+.button
+{
+    padding:2px;
+    padding-left:11px;
+    padding-right:11px;
+    color:white;
+    background:#686caa;
+    border-bottom: 2px solid #595d9a;
+    border-radius:4px;
+}
+
+.button:hover
+{
+    background: #9b9fdd;
+    border-bottom: 3px solid #8c8fcd;
+    color:white;
+}
+
+.black_line
+{
+    border-bottom:1px solid black;
+}
+
+.bl_black    {border-bottom:1px solid #000;}
+.bl_gray_11  {border-bottom:1px solid #aaa;}
+.bl_gray_12  {border-bottom:1px solid #bbb;}
+.bl_gray_13  {border-bottom:1px solid #ccc;}
+.bl_gray_14  {border-bottom:1px solid #ddd;}
+.bl_gray_15  {border-bottom:1px solid #eee;}
+
+.clear
+{
+    clear:both;
+}
+
+.left
+{
+    float:left;
+}
+
+.right
+{
+    float:right;
+}
+
+.small_container
+{
+    padding:0.25rem;
+}
+
+.container
+{
+    padding:1.25rem;
+}
+
+.h2   {height:2em;}
+.h3   {height:3em;}
+
+.bg_gray_9   {background:#999;}
+.bg_gray_10  {background:#aaa;}
+.bg_gray_11  {background:#bbb;}
+.bg_gray_12  {background:#ccc;}
+.bg_gray_13  {background:#ddd;}
+.bg_gray_14  {background:#eee;}
+.bg_white    {background:#fff;}
+
+.bg_blue_12  {background:#bbf;}
+.bg_blue_13  {background:#ccf;}
+.bg_blue_14  {background:#ddf;}
+.bg_blue_15  {background:#eef;}
+
+
+
+/* DOM */
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+
+#page
+{
+    width:100%;
+    float:left;
+}
+
+#sidebar
+{
+    background:#fff;
+    float:left;
+    width:15em;
+    left:15em;
+    margin-left:-15em;
+    position:relative;
+    overflow-y:auto;
+}
+
+#panel
+{
+    margin-left:15.5em;
+    overflow-y:auto;
+    margin-right:1em;
+}

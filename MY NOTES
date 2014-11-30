@@ -1,0 +1,78 @@
+Inspiration:
+
+!!!
+http://www.adminer.org/#download
+http://php.vrana.cz/architecture-of-adminer.php
+
+
+OTHER
+what is code coverage?
+use Xdebug
+
+
+FEATURES
+1. syntax coloring
+2. different colors (or colorful tags) depending on field/column type
+3. extensions for after processing of table
+4. adminer: on success, save msg to db and refresh, otherwise, reload and show error so data stays in POST for further resubmit. 
+5. export to CSV. How about XLS or Gnumeric formats?
+6. version checker, secret use stats - use ajax. 
+7. responsive design and mobile optimized (one day maybe!)
+
+
+GENERAL
+1. translations?
+2. minimize/pack in one file?
+3. sleek, fast and robust (and good looking)
+4. mini-php framework
+5. security, CSRF protection, XSS, SQL Injection
+6. php_shrink
+7. token_get_all, token_name
+8. extensions abstraction? or use only PDO?
+
+
+token_get_all
+1) use tiny PHP framework, create pretty much my own! Call it phpStarter? or phpOne? (php1.io)
+2) token_get_all
+3) phar?
+4) __halt_compiler() and have compiled code at the end
+
+
+
+
+and this stupid mac thing (SequelPro)
+
+
+PHAR:
+=====
+http://www.sitepoint.com/packaging-your-apps-with-phar/
+
+
+PHP SHRINK:
+===========
+<?php
+function php_shrink($input) {
+    $set = array_flip(preg_split('//', '!"#$&\'()*+,-./:;<=>?@[\]^`{|}'));
+    $space = '';
+    $output = '';
+    foreach (token_get_all($input) as $token) {
+        if (!is_array($token)) {
+            $token = array(0, $token);
+        }
+        if ($token[0] == T_COMMENT || $token[0] == T_WHITESPACE) {
+            $space = "\n";
+        } else {
+            if (isset($set[substr($output, -1)]) || isset($set[$token[1][0]])) {
+                $space = '';
+            }
+            $output .= $space . $token[1];
+            $space = '';
+        }
+    }
+    return $output;
+}
+?>
+
+
+
+

@@ -1,0 +1,10 @@
+*.swp
+*.DS_Store
+*.gz
+*.bz2
+*.zip
+*.tar
+*TRASH*
+.Trash-*
+*.log
+*.old
