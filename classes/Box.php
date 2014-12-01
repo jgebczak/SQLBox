@@ -22,7 +22,7 @@ class Box {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    static function loggedIn()
+    static function isLogged()
     {
         return $_REQUEST['username'];
     }
@@ -74,7 +74,7 @@ class Box {
         // all other actions (custom SQL, table select, table structure, variables, status, privileges, processes etc)
 
         $data['tables'] = Box::getTables();
-        Box::render('main', $data);
+        Box::render('layout', $data);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
