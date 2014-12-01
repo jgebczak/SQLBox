@@ -58,12 +58,20 @@ class Box {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    static function actionLogin()
+    {
+        Box::render('login');
+        die();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
     static function route()
     {
         // is user selected? match proper connection data by user
         if (!isset($_REQUEST['user']))
         {
-            // login
+            Box::actionLogin();
         }
 
         if (!isset($_REQUEST['db']))
@@ -74,12 +82,12 @@ class Box {
         // all other actions (custom SQL, table select, table structure, variables, status, privileges, processes etc)
 
         $data['tables'] = Box::getTables();
-        Box::render('layout', $data);
+        Box::render('main', $data);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    static function render($view, $data=null,$return=false)
+    static function renderPartial ($view, $data=null,$return=false)
     {
         if ($data)
             extract ($data);
@@ -91,6 +99,18 @@ class Box {
             Box::error("View file does not exist: $view");
 
         require ($view_file);
+        if ($return) return ob_get_clean();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    static function render($view, $data=null, $return = false)
+    {
+        $class = strtolower(str_replace('Controller','',get_class ($this)));
+
+        $content = Box::renderPartial ($view, $data, true);
+        if ($return) ob_start();
+            require ("views/layout.php");
         if ($return) return ob_get_clean();
     }
 
