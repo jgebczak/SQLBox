@@ -5,3 +5,5 @@
 
    explode, add new one, implode again and return!
    for all links!
+
+3. database stats are providing random amount or rows during each refresh

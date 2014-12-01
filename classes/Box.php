@@ -229,8 +229,17 @@ class Box {
         foreach ($dbs as $db) {
 
             $rest[$db] = array();
+
+            $tables = Box::cmd('select TABLE_NAME from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryColumn();
+
+            // count total rows in all tables within the db
+            $rows = 0;
+            if ($tables) foreach ($tables as $t) {
+                $rows += Box::cmd("select count(*) FROM $db.$t")->queryScalar();
+            }
+
             $res[$db]['tables'] = Box::cmd('select count(*) from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryScalar();
-            $res[$db]['rows'] = number_format(Box::cmd('select sum(table_rows) from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryScalar());
+            $res[$db]['rows'] = number_format($rows);
             $res[$db]['data_size'] = Box::cmd('select sum(data_length) from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryScalar();
         }
 
