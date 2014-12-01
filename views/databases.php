@@ -18,9 +18,9 @@
 
                 <tr>
                     <td><a href="?db=<?=$db?>"><?=$db?></a></td>
-                    <td><?=$details['tables']?></td>
-                    <td><?=$details['rows']?></td>
-                    <td><?=Box::formatDataSize($details['data_size'])?></td>
+                    <td style='text-align:right'><?=$details['tables']?></td>
+                    <td style='text-align:right'> <?=$details['rows']?></td>
+                    <td style='text-align:right'><?=Box::formatDataSize($details['data_size'])?></td>
                 </tr>
 
             <?php endforeach ?>

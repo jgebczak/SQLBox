@@ -10,6 +10,11 @@ class Box {
     static $db;
     static $title;
 
+    // current user
+    static $user;
+    static $server;
+    static $engine;
+
 //----------------------------------------------------------------------------------------------------------------------
 
     static function isLogged()
@@ -41,6 +46,10 @@ class Box {
 
             $engine = $data['engine'];
             $engine::connect($server,$data['user'],$data['pass']);
+
+            Box::$user   = $user;
+            Box::$server = $server;
+            Box::$engine = $engine;
         }
     }
 
@@ -151,10 +160,13 @@ class Box {
         }
 
         // is user selected? match proper connection data by user
-        if (!isset($_REQUEST['user']))
+        if (!isset($_REQUEST['user']) || !$_SESSION['users'] || !Box::$db)
         {
             Box::actionLogin();
         }
+
+        // if no active connection or no session set
+
 
         if (!isset($_REQUEST['db']))
         {
