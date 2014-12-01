@@ -53,7 +53,6 @@
 
     function notification(type, msg)
     {
-        console.log(type);
         $(".alert_box").hide();
         $(".alert_box."+type).find('.msg').html(msg);
         $(".alert_box."+type).show();

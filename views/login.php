@@ -23,7 +23,7 @@
 
     <BR>
 
-    <a class='button big' href='javascript:void(0)' onclick=''>Login</a>
+    <a class='button big' href='javascript:void(0)' onclick='login()'>Login</a>
 
 </div>
 
@@ -33,7 +33,20 @@
 
     function login()
     {
-            notification('error','NO!')
+        var server = $("#server").val();
+        var login = $("#login").val();
+        var pass = $("#pass").val();
+
+        $.post("?ajax=login", {server:server,login:login,pass:pass}, function(response){
+            if (response == 'ok')
+            {
+                window.location.href = '?user=login';
+            }
+            else
+            {
+                notification('error',response);
+            }
+        })
     }
 
 //----------------------------------------------------------------------------------------------------------------------

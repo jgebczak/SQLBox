@@ -66,8 +66,27 @@ class Box {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    static function ajaxLogin()
+    {
+        $server = $_REQUEST['server'];
+        $login = $_REQUEST['login'];
+        $pass = $_REQUEST['pass'];
+
+        die($pass);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
     static function route()
     {
+        //ajax requests
+        if (isset($_REQUEST['ajax']))
+        {
+            $f = 'ajax'.$_REQUEST['ajax'];
+            Box::$f();
+            return;
+        }
+
         // is user selected? match proper connection data by user
         if (!isset($_REQUEST['user']))
         {
