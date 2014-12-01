@@ -1,0 +1,7 @@
+1. pass $server variable everywhere
+2. db selection, have function to modify query URL to set/append new parameters so it stays all the time.
+
+   use array
+
+   explode, add new one, implode again and return!
+   for all links!

@@ -60,6 +60,26 @@ class Box {
         die();
     }
 
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    static function formatDataSize($v)
+    {
+        $k = 1024;
+
+        if ($v > 1024*$k)
+        {
+            $count = number_format($v / (1024*$k),2);
+            return "<strong style='color:green'>$count</strong> MB";
+        }
+        else
+        {
+            $count = number_format($v / $k,2);
+            return "<span style='color:green'>$count</span> KB";
+        }
+    }
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
     static function ajaxLogin()
@@ -192,7 +212,17 @@ class Box {
 
     static function getDatabases()
     {
-        return Box::cmd('show databases')->queryColumn();
+        $dbs = Box::cmd('show databases')->queryColumn();
+
+        foreach ($dbs as $db) {
+
+            $rest[$db] = array();
+            $res[$db]['tables'] = Box::cmd('select count(*) from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryScalar();
+            $res[$db]['rows'] = number_format(Box::cmd('select sum(table_rows) from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryScalar());
+            $res[$db]['data_size'] = Box::cmd('select sum(data_length) from information_schema.TABLES where table_schema = :db')->bindParam(':db',$db)->queryScalar();
+        }
+
+        return $res;
     }
 
 //----------------------------------------------------------------------------------------------------------------------
