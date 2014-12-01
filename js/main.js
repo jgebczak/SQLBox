@@ -20,3 +20,43 @@
         }
     }
 }());
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    function enter(selector, action)
+    {
+        // enable enter key
+        $(selector).keypress(function (e) {
+          if (e.which == 13) {
+
+            // if selector focus on another element
+            if (typeof action==='string')
+            {
+                // just go to a next one (table forms only)
+                if (action=='next')
+                    $(this).closest('tr').next().find('input').focus();
+                else
+                    $(action).focus();
+            }
+
+            // or call the callback if set...
+            if (typeof action==='function')
+            {
+                action();
+            }
+          }
+        });
+
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    function notification(type, msg)
+    {
+        console.log(type);
+        $(".alert_box").hide();
+        $(".alert_box."+type).find('.msg').html(msg);
+        $(".alert_box."+type).show();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
