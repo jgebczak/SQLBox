@@ -8,6 +8,14 @@
 
     <table id='login_form' class='form'>
         <tr>
+            <td>Engine</td>
+            <td>
+                <select id='engine' disabled>
+                    <option value='MySQL'>MySQL</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>Server</td>
             <td><input placeholder='localhost' type='text' id='server' /></td>
         </tr>
@@ -36,11 +44,12 @@
         var server = $("#server").val();
         var login = $("#login").val();
         var pass = $("#pass").val();
+        var engine = $("#engine").val();
 
-        $.post("?ajax=login", {server:server,login:login,pass:pass}, function(response){
+        $.post("?ajax=login", {engine:engine,server:server,login:login,pass:pass}, function(response){
             if (response == 'ok')
             {
-                window.location.href = '?user=login';
+                window.location.href = '?user='+login;
             }
             else
             {
@@ -58,6 +67,15 @@
         // react on enter key
         enter('#server,#login','next');
         enter('#pass',login);
+
+        // prepopulate (test only)
+        <?php if (isDev()): ?>
+
+            $("#login").val('root');
+            $("#pass").val('CocaCola');
+
+        <?php endif; ?>
+
     });
 
 //----------------------------------------------------------------------------------------------------------------------

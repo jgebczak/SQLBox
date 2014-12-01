@@ -1,15 +1,18 @@
 <?php
 //----------------------------------------------------------------------------------------------------------------------
 
-function autoloader($class)
+function autoloader($c)
 {
-    $component = 'classes/'.$class.'.php';
+    $class = 'classes/'.$c.'.php';
+    $engine = 'engines/'.$c.'.php';
 
     // components
-    if (file_exists($component))
-        require ($component);
+    if (file_exists($class))
+        require ($class);
+    elseif (file_exists($engine))
+        require ($engine);
     else
-        die('Component could not be found: '.$class);
+        die('Class could not be found: '.$c);
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -23,6 +26,14 @@ function debug()
 
 //----------------------------------------------------------------------------------------------------------------------
 
+function isDev()
+{
+    return ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '66.238.6.34') ? 1:0;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
 ini_set('display_errors', 1);
 session_start();
 error_reporting (E_ALL ^ E_NOTICE);
@@ -30,7 +41,6 @@ spl_autoload_register ('autoloader');
 
 //----------------------------------------------------------------------------------------------------------------------
 
-Box::init();
 Box::connect();
 Box::route();
 

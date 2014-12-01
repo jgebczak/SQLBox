@@ -8,23 +8,13 @@ class Box {
 
     // db handler
     static $db;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    // set pw in session for now
-    static function init()
-    {
-        $_SESSION['user']       = 'root';
-        $_SESSION['pass']       = 'CocaCola';
-        $_SESSION['server']     = 'localhost';
-        $_SESSION['connection'] = 'mysql:host=localhost;dbname=kb';
-    }
+    static $title;
 
 //----------------------------------------------------------------------------------------------------------------------
 
     static function isLogged()
     {
-        return $_REQUEST['username'];
+        return $_REQUEST['user'];
     }
 
 
@@ -39,14 +29,19 @@ class Box {
 
     static function connect()
     {
-        try {
-                Box::$db = new PDO($_SESSION['connection'], $_SESSION['user'], $_SESSION['pass']);
-            }
-            catch (PDOException $e) {
-                die ($e->getMessage());
-            }
+        // if user is set, try to make connection
+        $user = $_REQUEST['user'];
+        $server = $_REQUEST['server'];
+        if (!$server) $server='localhost';
 
-        Box::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if ($user)
+        {
+            $data = $_SESSION['users'][$user.'@'.$server];
+            if (!$data) return;
+
+            $engine = $data['engine'];
+            $engine::connect($server,$data['user'],$data['pass']);
+        }
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -60,7 +55,8 @@ class Box {
 
     static function actionLogin()
     {
-        Box::render('login');
+        Box::$title = 'Login';
+        Box::render('login', $data);
         die();
     }
 
@@ -69,16 +65,63 @@ class Box {
     static function ajaxLogin()
     {
         $server = $_REQUEST['server'];
-        $login = $_REQUEST['login'];
-        $pass = $_REQUEST['pass'];
+        $login  = $_REQUEST['login'];
+        $pass   = $_REQUEST['pass'];
+        $engine = $_REQUEST['engine'];
 
-        die($pass);
+        if (!$server) $server='localhost';
+
+        // make a test connection
+        $test = $engine::testConnection($server,$login,$pass);
+
+        if ($test != 'ok')
+            die($test);
+
+        // if successful, add connection to the session
+        $_SESSION['users'][$login.'@'.$server] =
+           array(
+                'user'   => $login,
+                'pass'   => $pass,
+                'server' => $server,
+                'engine' => $engine
+            );
+
+        die('ok');
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+// debug view
+
+    static function debug()
+    {
+        $debug = $_REQUEST['debug'];
+
+        if ($debug=='clear')
+        {
+            session_unset();
+            die('Session reset');
+        }
+
+        echo '<pre>';
+        echo 'Session:<BR>';
+        print_r ($_SESSION);
+        echo '<BR><BR>';
+        echo 'DB handler:<BR>';
+        print_r (Box::$db);
+    }
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
     static function route()
     {
+        // debug mode
+        if (isset($_REQUEST['debug']) && isDev())
+        {
+            Box::debug();
+            return;
+        }
+
         //ajax requests
         if (isset($_REQUEST['ajax']))
         {
@@ -96,10 +139,15 @@ class Box {
         if (!isset($_REQUEST['db']))
         {
             // database selection
+            Box::$title = 'Select database';
+            $data['dbs'] = Box::getDatabases();
+            Box::render('databases', $data);
         }
 
         // all other actions (custom SQL, table select, table structure, variables, status, privileges, processes etc)
 
+        // main view (list of tables)
+        Box::$title = 'Content';
         $data['tables'] = Box::getTables();
         Box::render('main', $data);
     }
@@ -138,6 +186,13 @@ class Box {
     static function getTables()
     {
         return Box::cmd('show tables')->queryColumn();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    static function getDatabases()
+    {
+        return Box::cmd('show databases')->queryColumn();
     }
 
 //----------------------------------------------------------------------------------------------------------------------

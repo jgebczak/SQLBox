@@ -116,20 +116,40 @@ i
     float:left;
 }
 
+.right
+{
+    float:right;
+}
+
 .form td
 {
     padding:3px;
 }
 
-.form input:focus
+    .form input:focus
+    {
+        background:#e6e6e6;
+    }
+
+
+table.data
 {
-    background:#e6e6e6;
+    border-collapse:collapse;
+    border:1px solid #bbb;
 }
 
-.right
-{
-    float:right;
-}
+    table.data td
+    {
+        padding:4px;
+    }
+
+    table.data th
+    {
+        padding:4px;
+        background:#ddd;
+        text-align:left;
+    }
+
 
 .small_container
 {

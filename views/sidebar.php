@@ -22,12 +22,17 @@
 
             <div class='container bl_gray_13'>
 
-                <?php foreach ($tables as $t): ?>
+                <?php if ($tables): ?>
 
-                  <a href="#">[select]</a> <?=$t?><BR>
+                    <?php foreach ($tables as $t): ?>
+                        <a href="#">[select]</a> <?=$t?><BR>
+                    <?php endforeach ?>
 
-                <?php endforeach ?>
+                <?php else: ?>
 
+                    There are no tables.
+
+                <?php endif; ?>
             </div>
 
 

@@ -23,7 +23,7 @@
         </div>
 
         <div class='container bl_gray_11 bg_blue_14'>
-            <h1>Login</h1>
+            <h1><?=Box::$title?></h1>
         </div>
 
 
