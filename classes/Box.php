@@ -53,6 +53,12 @@ class Box {
             Box::$server = $server;
             Box::$engine = $engine;
         }
+
+        // select db
+        if ($db = $_REQUEST['db'])
+        {
+            Box::cmd("use `$db`")->execute();
+        }
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -61,16 +67,6 @@ class Box {
     {
         die('Error: '.$msg);
     }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    static function actionLogin()
-    {
-        Box::$title = 'Login';
-        Box::render('login', $data);
-        die();
-    }
-
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -168,26 +164,28 @@ class Box {
         // is user selected? match proper connection data by user
         if (!isset($_REQUEST['user']) || !$_SESSION['users'] || !Box::$dbh)
         {
-            Box::$action='login';
-            Box::actionLogin();
+            Actions::login();
         }
 
-        // if no active connection or no session set
-        if (!isset($_REQUEST['db']))
+        // if no db set, go to selection
+        if (!Box::$db)
         {
             // database selection
             Box::$title = 'Select database';
             $data['dbs'] = Box::getDatabases();
             Box::$action='select_db';
             Box::render('databases', $data);
+            return;
         }
+
+        // db selected, go to tables
+        Actions::database();
 
         // all other actions (custom SQL, table select, table structure, variables, status, privileges, processes etc)
 
         // main view (list of tables)
-        Box::$title = 'Content';
-        $data['tables'] = Box::getTables();
-        Box::render('main', $data);
+
+        // todo
     }
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -35,8 +35,14 @@ class Command
 
     function execute ()
     {
-        $this->c->execute();
-        return $this;
+        try {
+
+            $this->c->execute();
+            return $this;
+
+        } catch (Exception $e) {
+            Box::error($e->getMessage());
+        }
     }
 
 //======================================================================================================================

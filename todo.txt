@@ -6,7 +6,7 @@ login: -
 
 
 Breadcrumbs on the top!
-
+add debug panel
 
 
 
