@@ -19,7 +19,7 @@
             <?php foreach ($dbs as $db => $details): ?>
 
                 <tr>
-                    <td><a href="?db=<?=$db?>"><?=$db?></a></td>
+                    <td><a class='select_db' href="<?=Box::url('db',$db)?>"><?=$db?></a></td>
                     <td style='text-align:right'><?=$details['tables']?></td>
                     <td style='text-align:right'> <?=$details['rows']?></td>
                     <td style='text-align:right'><?=Box::formatDataSize($details['data_size'])?></td>
@@ -45,6 +45,10 @@
 
 $(document).ready(function(){
 
+     // select first item as default (skip header though)
+     $("#databases tr").not('.header').eq(0).addClass('selected');
+
+     // up/down navigation
      $(document).keydown(function (event){
 
                 var key = event.which;
@@ -58,6 +62,11 @@ $(document).ready(function(){
                         $("#databases tr").not('.header').eq(0).addClass('selected');
                         return;
                     }
+                }
+
+                if (key == KEY_ENTER)
+                {
+                    window.location.href = cur.find('a.select_db').attr('href');
                 }
 
                 if (key == KEY_DOWN)

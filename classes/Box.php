@@ -7,13 +7,15 @@ class Box {
     static $ver = '0.1';
 
     // db handler
-    static $db;
+    static $dbh;
     static $title;
+    static $action;
 
     // current user
     static $user;
     static $server;
     static $engine;
+    static $db;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +29,7 @@ class Box {
 
     static function cmd($q)
     {
-        return new Command (Box::$db, $q);
+        return new Command (Box::$dbh, $q);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -136,7 +138,7 @@ class Box {
         print_r ($_SESSION);
         echo '<BR><BR>';
         echo 'DB handler:<BR>';
-        print_r (Box::$db);
+        print_r (Box::$dbh);
     }
 
 
@@ -144,9 +146,12 @@ class Box {
 
     static function route()
     {
+        Box::$db = $_REQUEST['db'];
+
         // debug mode
         if (isset($_REQUEST['debug']) && isDev())
         {
+            Box::$action='debug';
             Box::debug();
             return;
         }
@@ -155,24 +160,25 @@ class Box {
         if (isset($_REQUEST['ajax']))
         {
             $f = 'ajax'.$_REQUEST['ajax'];
+            Box::$action='ajax';
             Box::$f();
             return;
         }
 
         // is user selected? match proper connection data by user
-        if (!isset($_REQUEST['user']) || !$_SESSION['users'] || !Box::$db)
+        if (!isset($_REQUEST['user']) || !$_SESSION['users'] || !Box::$dbh)
         {
+            Box::$action='login';
             Box::actionLogin();
         }
 
         // if no active connection or no session set
-
-
         if (!isset($_REQUEST['db']))
         {
             // database selection
             Box::$title = 'Select database';
             $data['dbs'] = Box::getDatabases();
+            Box::$action='select_db';
             Box::render('databases', $data);
         }
 
@@ -219,6 +225,29 @@ class Box {
     {
         return Box::cmd('show tables')->queryColumn();
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+// create URL with new parameters, pass the existing standard ones
+// accepts array as argument or [key,value] pair
+
+    static function url()
+    {
+       $params['user']   = Box::$user;
+       $params['server'] = Box::$server;
+       $params['db']     = Box::$db;
+
+       $args = func_get_args();
+
+       if (is_array($args[0]))
+           $params += $args[0];
+       else
+       {
+           $params[$args[0]] = $args[1];
+       }
+
+       return '/?'.http_build_query($params);
+    }
+
 
 //----------------------------------------------------------------------------------------------------------------------
 

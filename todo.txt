@@ -1,3 +1,59 @@
+URLS / VIEWS:
+=============
+
+DONE:
+login: - 
+
+
+Breadcrumbs on the top!
+
+
+
+
+server always optional.
+
+db selection:   ?username
+main (tables):  ?username, db
+table structure:  username, db, table(table)
+table (data):     username, db, select(table)
+alter table       username, db, create(table)
+table indexes     username, db, indexes=table
+table for. keys   username, db, foreign=table
+import            username, db, import=''
+privileges        username,db,privileges=''
+create user       username,db,user=''
+alter db          username,db,database=''
+schema view       username, db, schema=''        (for each table)
+custom sql        username, db, sql=''
+new table         username, db, create('')
+new item          username,db, edit(table)
+db dump           username,db,dump=''
+table dump        username,db,dump=(table)
+
+SERVER:
+=======
+server privileges
+process list
+variables
+status
+
+
+DB:
+create view
+create event
+create procedure
+create function
+
+TABLE:
+add foreign key
+add trigger
+
+
+
+
+save logins like adminer (cookies!)
+save local preferences (config file or cookie)
+
 1. pass $server variable everywhere
 2. db selection, have function to modify query URL to set/append new parameters so it stays all the time.
 
@@ -6,9 +62,53 @@
    explode, add new one, implode again and return!
    for all links!
 
-3. db selection - key navigation (up/down)
-
-
+3. Adjust page title depending where you are
+4. MySQL version,
+5. show db permissions on db list (for current user!)
 
 "powerful database admin in a box!"
 
+
+- clone table
+- clone row
+- clone database
+
+- sync databases / tables (show differences etc)
+
+
+- history of queries
+- bookmark queries
+- favorite fables (option to hide others)
+- internal views (choose columns and settings), saved locally
+- fancy live search
+- in-line editing
+- SQL syntax highlighting
+- create views, functions, triggers with templates
+- watch changes "live" (watch table or a row and show difference)
+- "diff" between tables and rows
+- compute checksum for tables/databases
+- access thru SSH (maybe, trick with SSH proxy via commandline)
+- performance suggestions: 
+   a) where to create index
+   b) which tables to OPTIMIZE
+   c) having FIXED tables 
+   d) optimize QUERIES if possible
+- snippets, choose and click or like sublime (autocomplete)
+- autocorrection and autopopulate by column, db or table name
+- show different data types differently
+- option to populte with random data, or semantic (you can choose like 'name', 'address', zip, phone, email etc - automatically guess by name)
+- auto detect keys
+
+
+check features of SequelPro !!
+
+
+Competition:
+- phpMyAdmin
+- Adminer
+- SQLBuddy
+- Webmin (webadmin?)
+- Chives
+
+
+- 

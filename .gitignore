@@ -8,3 +8,5 @@
 .Trash-*
 *.log
 *.old
+temp.txt
+*~

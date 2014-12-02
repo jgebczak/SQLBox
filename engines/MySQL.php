@@ -6,7 +6,7 @@ class MySQL
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    private static $db;
+    private static $dbh;
     const ENGINE = 'mysql';
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ class MySQL
     static function testConnection ($server, $user,$pass)
     {
         try {
-                MySQL::$db = new PDO(self::ENGINE.':host='.$server, $user, $pass);
+                MySQL::$dbh = new PDO(self::ENGINE.':host='.$server, $user, $pass);
             }
             catch (PDOException $e) {
                 return ($e->getMessage());
@@ -28,7 +28,7 @@ class MySQL
     static function connect ($server,$user,$pass)
     {
         try {
-                Box::$db = new PDO(self::ENGINE.':host='.$server, $user, $pass);
+                Box::$dbh = new PDO(self::ENGINE.':host='.$server, $user, $pass);
             }
         catch (PDOException $e) {
                 Box::error($e->getMessage());

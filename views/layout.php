@@ -11,7 +11,15 @@
             <?php if (Box::islogged()): ?>
 
                 <span class='left small_container bg_gray_14'>
-                    Mysql > Server
+
+                    <a href="/"><?=Box::$engine?></a>
+
+                    <?php if (Box::$db): ?>
+                        > <a href="/?user<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                    <?php else: ?>
+                        > Server
+                    <?php endif ?>
+
                 </span>
 
                 <div class='right small_container'>

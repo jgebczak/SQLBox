@@ -169,6 +169,15 @@ table.data
 .h2   {height:2em;}
 .h3   {height:3em;}
 
+.gray5       {color:#555}
+.gray6       {color:#666}
+.gray7       {color:#777}
+.gray8       {color:#888}
+.gray9       {color:#999}
+.gray10      {color:#aaa}
+.gray11      {color:#bbb}
+.gray12      {color:#ccc}
+
 .bg_gray_9   {background:#999;}
 .bg_gray_10  {background:#aaa;}
 .bg_gray_11  {background:#bbb;}

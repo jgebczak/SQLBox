@@ -10,7 +10,19 @@
         </div>
 
 
-        <?php if (Box::isLogged()): ?>
+        <?php if (!Box::isLogged()): ?>
+
+            <div class='container bl_gray_13'>
+                Log in first <i class="fa fa-chevron-circle-right gray9"></i>
+            </div>
+
+        <?php elseif (Box::$action=='select_db'): ?>
+
+            <div class='container bl_gray_13'>
+                Select database <i class="fa fa-chevron-circle-right gray9"></i>
+            </div>
+
+        <?php else: ?>
 
             <div class='container bl_gray_13'>
 
@@ -36,15 +48,7 @@
             </div>
 
 
-        <?php else: ?>
-
-            <div class='container bl_gray_13'>
-
-                Log in first >
-
-            </div>
-
-        <?php endif ?>
+        <?php endif; ?>
 
 
     </header>
