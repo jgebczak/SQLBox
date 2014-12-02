@@ -1,3 +1,20 @@
+var KEY_UP     = 38,
+    KEY_DOWN   = 40,
+    KEY_LEFT   = 37,
+    KEY_RIGHT  = 39,
+    KEY_ESC    = 27,
+    KEY_DEL    = 46,
+    KEY_SPACE  = 32,
+    KEY_ENTER  = 13,
+    KEY_INSERT = 45,
+    KEY_HOME   = 36,
+    KEY_END    = 35,
+    KEY_PLUS   = 107,
+    KEY_MINUS  = 109;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 // Avoid `console` errors in browsers that lack a console.
 (function() {
     var method;

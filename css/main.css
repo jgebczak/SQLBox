@@ -150,6 +150,11 @@ table.data
         text-align:left;
     }
 
+    table.data tr.selected td
+    {
+        background:#def2de;
+    }
+
 
 .small_container
 {

@@ -6,4 +6,9 @@
    explode, add new one, implode again and return!
    for all links!
 
-3. database stats are providing random amount or rows during each refresh
+3. db selection - key navigation (up/down)
+
+
+
+"powerful database admin in a box!"
+
