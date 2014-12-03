@@ -38,6 +38,12 @@ i
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 
+.round5 {border-radius:5px;}
+.round4 {border-radius:4px;}
+.round3 {border-radius:3px;}
+.round2 {border-radius:2px;}
+
+
 .alert_box
 {
     margin-top:2px;

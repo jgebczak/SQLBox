@@ -5,6 +5,13 @@ DONE:
 login: - 
 
 
+bug:
+- when filtering, up/down goes to invisible elements too!
+- up/down keys should not change cursor in filter!
+
+
+
+
 Breadcrumbs on the top!
 add debug panel
 
