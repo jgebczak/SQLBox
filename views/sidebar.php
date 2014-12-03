@@ -34,7 +34,7 @@
  -->
             <div class='container bl_gray_13'>
 
-                <?php if ($tables): ?>
+                <?php if ($tables = Box::getTables()): ?>
 
                     <?php foreach ($tables as $t): ?>
                         <a href="#">[select]</a> <?=$t?><BR>

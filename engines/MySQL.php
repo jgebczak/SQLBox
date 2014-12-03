@@ -25,10 +25,12 @@ class MySQL
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    static function connect ($server,$user,$pass)
+    static function connect ($server,$user,$pass,$db='')
     {
         try {
-                Box::$dbh = new PDO(self::ENGINE.':host='.$server, $user, $pass);
+                if ($db) $dbsel = ';dbname='.$db;
+                $connectionString = self::ENGINE.':host='.$server.$dbsel;
+                Box::$dbh = new PDO($connectionString, $user, $pass);
             }
         catch (PDOException $e) {
                 Box::error($e->getMessage());

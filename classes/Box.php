@@ -47,17 +47,12 @@ class Box {
             if (!$data) return;
 
             $engine = $data['engine'];
-            $engine::connect($server,$data['user'],$data['pass']);
+            $engine::connect($server,$data['user'],$data['pass'],$_REQUEST['db']);
 
             Box::$user   = $user;
             Box::$server = $server;
             Box::$engine = $engine;
-        }
-
-        // select db
-        if ($db = $_REQUEST['db'])
-        {
-            Box::cmd("use `$db`")->execute();
+            Box::$db     = $db;
         }
     }
 
