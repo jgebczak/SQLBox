@@ -21,7 +21,7 @@ class Actions {
         Box::$title = 'Database: '.Box::$db;
         Box::$action = 'database';
 
-        $data['tables'] = Box::getTables();
+        $data['tables'] = Box::getTablesWithDetails();
 
         Box::render('database', $data);
     }

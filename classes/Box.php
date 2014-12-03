@@ -220,6 +220,19 @@ class Box {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+
+    static function getTablesWithDetails()
+    {
+        $tables = Box::cmd('SELECT * FROM information_schema.tables WHERE table_schema = :db')
+                 ->bindValue(':db', Box::$db)
+                 ->queryAll();
+
+        return $tables;
+    }
+
+
+//----------------------------------------------------------------------------------------------------------------------
 // create URL with new parameters, pass the existing standard ones
 // accepts array as argument or [key,value] pair
 

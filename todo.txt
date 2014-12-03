@@ -9,6 +9,9 @@ Breadcrumbs on the top!
 add debug panel
 
 
+if session expires, move back to login! (on ::connect?)
+
+
 
 server always optional.
 

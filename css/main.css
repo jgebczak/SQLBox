@@ -138,21 +138,32 @@ table.data
     border:1px solid #bbb;
 }
 
+    table.data tr:nth-child(even) td
+    {
+        background:#eee;
+    }
+
     table.data td
     {
         padding:4px;
+        padding-top:2px;
+        padding-bottom:2px;
     }
 
     table.data th
     {
         padding:4px;
+        padding-top:2px;
+        padding-bottom:2px;
         background:#ddd;
         text-align:left;
     }
 
-    table.data tr.selected td
+    table.data tr.selected td, table.data tr.selected td *
     {
-        background:#def2de;
+        /* background:#def2de; */
+        background: #aaa;
+        color:white !important;
     }
 
 
