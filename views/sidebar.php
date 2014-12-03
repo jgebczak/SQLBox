@@ -37,7 +37,7 @@
                 <?php if ($tables = Box::getTables()): ?>
 
                     <?php foreach ($tables as $t): ?>
-                        <a href="#">[select]</a> <?=$t?><BR>
+                        <a class='gray8' href="<?=Box::url('select',$t)?>">select</a> <a href="<?=Box::url('table',$t)?>"><?=$t?></a><BR>
                     <?php endforeach ?>
 
                 <?php else: ?>
