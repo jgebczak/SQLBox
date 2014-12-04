@@ -34,6 +34,14 @@ class Box {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    static function redirect($url)
+    {
+        header("Location: $url");
+        die();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
     static function connect()
     {
         // if user is set, try to make connection
@@ -44,10 +52,16 @@ class Box {
         if ($user)
         {
             $data = $_SESSION['users'][$user.'@'.$server];
-            if (!$data) return;
+
+            // no user found or session has expired?
+            if (!$data) Box::redirect('/');
 
             $engine = $data['engine'];
             $engine::connect($server,$data['user'],$data['pass'],$_REQUEST['db']);
+
+            // connection failed or lost?
+            if (!Box::$dbh)
+                 Box::redirect('/');
 
             Box::$user   = $user;
             Box::$server = $server;

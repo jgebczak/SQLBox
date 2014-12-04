@@ -123,14 +123,16 @@ $(document).ready(function(){
 
                 if (key == KEY_DOWN)
                 {
-                    if (cur.next().not('.header').size() == 0) return;
-                    cur.removeClass('selected').next().addClass('selected');
+                    event.preventDefault();
+                    if (cur.nextAll(':visible').not('.header').size() == 0) return;
+                    cur.removeClass('selected').nextAll(':visible').first().addClass('selected');
                 }
 
                 if (key == KEY_UP)
                 {
-                    if (cur.prev().not('.header').size() == 0) return;
-                    cur.removeClass('selected').prev().addClass('selected');
+                    event.preventDefault();
+                    if (cur.prevAll(':visible').not('.header').size() == 0) return;
+                    cur.removeClass('selected').prevAll(':visible').first().addClass('selected');
                 }
     });
 });
