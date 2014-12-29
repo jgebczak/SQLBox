@@ -14,8 +14,19 @@
 
                     <a href="/"><?=Box::$engine?></a>
 
-                    <?php if (Box::$db): ?>
-                        > <a href="/?user<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                    <?php if (Box::$select): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
+                        > Data: <?=Box::$select?>
+
+                    <?php elseif (Box::$table): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
+                        > Table: <?=Box::$table?>
+
+                    <?php elseif (Box::$db): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <?=Box::$db?>
                     <?php else: ?>
                         > Server
                     <?php endif ?>
@@ -23,7 +34,7 @@
                 </span>
 
                 <div class='right small_container'>
-                    <a class='right' href="#">Logout</a>
+                    <a class='right' href="?logout">Logout</a>
                 </div>
 
             <?php endif ?>

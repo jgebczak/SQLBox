@@ -100,6 +100,14 @@ i
     color:white;
 }
 
+.button.selected
+{
+    background: white;
+    border:1px solid #9b9fdd;
+    border-bottom: 3px solid #686B99;
+    color:black;
+}
+
 .black_line
 {
     border-bottom:1px solid black;

@@ -17,6 +17,10 @@ class Box {
     static $engine;
     static $db;
 
+    // actions
+    static $table;
+    static $select;
+
 //----------------------------------------------------------------------------------------------------------------------
 
     static function isLogged()
@@ -38,6 +42,19 @@ class Box {
     {
         header("Location: $url");
         die();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    static function value ($v, $column)
+    {
+        $maxlen = 50;
+
+        if (strlen($v) >= $maxlen)
+        {
+            $v = substr($v,0,$maxlen).' ...';
+        }
+        return $v;
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -161,6 +178,15 @@ class Box {
             return;
         }
 
+        // logout
+        if (isset($_REQUEST['logout']))
+        {
+            session_unset();
+            PT::redirect('/');
+            return;
+        }
+
+
         //ajax requests
         if (isset($_REQUEST['ajax']))
         {
@@ -187,8 +213,25 @@ class Box {
             return;
         }
 
+        // table - structure
+        if (isset($_REQUEST['table']))
+        {
+            Box::$table = $_REQUEST['table'];
+            Table::actionIndex();
+            return;
+        }
+
+        // table - data (select)
+        if (isset($_REQUEST['select']))
+        {
+            Box::$select = $_REQUEST['select'];
+            Table::actionData();
+            return;
+        }
+
+
         // db selected, go to tables
-        Actions::database();
+        Database::actionIndex();
 
         // all other actions (custom SQL, table select, table structure, variables, status, privileges, processes etc)
 
@@ -233,28 +276,19 @@ class Box {
         return Box::cmd('show tables')->queryColumn();
     }
 
-//----------------------------------------------------------------------------------------------------------------------
-
-
-    static function getTablesWithDetails()
-    {
-        $tables = Box::cmd('SELECT * FROM information_schema.tables WHERE table_schema = :db')
-                 ->bindValue(':db', Box::$db)
-                 ->queryAll();
-
-        return $tables;
-    }
-
 
 //----------------------------------------------------------------------------------------------------------------------
 // create URL with new parameters, pass the existing standard ones
 // accepts array as argument or [key,value] pair
 
+    // url(field, value)
     static function url()
     {
        $params['user']   = Box::$user;
        $params['server'] = Box::$server;
        $params['db']     = Box::$db;
+//       $params['table']  = Box::$table;
+//       $params['select'] = $_REQUEST['select'];
 
        $args = func_get_args();
 
