@@ -26,6 +26,7 @@ class Box {
 
     // filters
     static $limit;
+    static $text_length;
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ class Box {
 
     static function value ($v, $column)
     {
-        $maxlen = 50;
+        $maxlen = Box::$text_length ? Box::$text_length : 50;
 
         if (strlen($v) >= $maxlen)
         {

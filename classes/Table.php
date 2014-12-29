@@ -48,16 +48,19 @@ static $total_rows;
 
     static function actionData()
     {
-        Box::$title = 'Data: '.Box::$select;
-        Box::$action = 'select';
-
         // filters
         Box::$limit = $_REQUEST['limit'];
+        Box::$text_length = $_REQUEST['text_length'];
+
         if (!Box::$limit) Box::$limit = 10;
+        if (!Box::$text_length) Box::$text_length = 50;
 
         // get table data
         $data['data']    = Table::getData(Box::$select);
         $data['columns'] = Table::getColumns(Box::$select);
+
+        Box::$title = 'Data: '.Box::$select.' ('.Table::$total_rows.')';
+        Box::$action = 'select';
 
         Box::render('table_data', $data);
     }

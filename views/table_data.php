@@ -29,6 +29,9 @@
             <input type='hidden' name='db'     value='<?=Box::$db?>' />
             <input type='hidden' name='select' value='<?=Box::$select?>' />
 
+            Text length
+            <input class='sm' type='number' name='text_length' value='<?=Box::$text_length?>'/>
+
             Limit
             <input class='sm' type='number' name='limit' value='<?=Box::$limit?>'/>
             <button type='submit' class='button small'>Refresh</button>
