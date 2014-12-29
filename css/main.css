@@ -271,10 +271,20 @@ table.data
 
 .query
 {
-    padding:10px;
+    padding:5px;
     width:auto;
     background:#eee;
     border-radius:5px;
     font-size:0.8em;
     color:#333;
+}
+
+.syntaxhighlighter .toolbar
+{
+    display:none;
+}
+
+.syntaxhighlighter .gutter .line *
+{
+    border-right:3px solid red !important;
 }

@@ -41,7 +41,9 @@
     <!-- QUERY VIEW -->
     <?php if (Box::$query): ?>
     <div class='query'>
-        <?=Box::$query?>
+        <script type="syntaxhighlighter" class="brush: sql"><![CDATA[
+<?=Box::$query?>
+       ]]></script>
     </div>
     <?php endif; ?>
 

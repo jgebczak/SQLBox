@@ -37,6 +37,19 @@ class Box {
 
 
 //----------------------------------------------------------------------------------------------------------------------
+// trim each line within a string (to remove indentation)
+
+    static function trimLines($s)
+    {
+        $lines = explode("\n", $s);
+        if ($lines) foreach ($lines as $i => $line) {
+            $lines[$i] = ltrim($line);
+        }
+        return implode("\n", $lines);
+    }
+
+
+//----------------------------------------------------------------------------------------------------------------------
 
     static function cmd($q)
     {

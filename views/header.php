@@ -19,5 +19,20 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSQL.js" type="text/javascript"></script>
+
 </head>
+
+<script type="text/javascript">
+//----------------------------------------------------------------------------------------------------------------------
+
+    SyntaxHighlighter.all();
+
+//----------------------------------------------------------------------------------------------------------------------
+</script>
+
 <body>
