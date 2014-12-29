@@ -2,6 +2,9 @@
 
 class Table {
 
+//----------------------------------------------------------------------------------------------------------------------
+
+static $total_rows;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -24,9 +27,14 @@ class Table {
 
     static function getData ($table)
     {
+        Table::$total_rows = Box::cmd("SELECT count(*) FROM $table")
+                 ->queryScalar();
+
+        $limit = Box::$limit;
+
         $data = Box::cmd("SELECT * FROM $table
                           ORDER BY id desc
-                          LIMIT 10")
+                          LIMIT $limit")
          ->queryAll();
 
         return $data;
@@ -37,8 +45,12 @@ class Table {
 
     static function actionData()
     {
-        Box::$title = 'Table: '.Box::$table;
+        Box::$title = 'Data: '.Box::$select;
         Box::$action = 'select';
+
+        // filters
+        Box::$limit = $_REQUEST['limit'];
+        if (!Box::$limit) Box::$limit = 10;
 
         // get table data
         $data['data']    = Table::getData(Box::$select);

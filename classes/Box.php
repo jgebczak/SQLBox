@@ -21,6 +21,10 @@ class Box {
     static $table;
     static $select;
 
+    // filters
+    static $limit;
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
     static function isLogged()
@@ -287,6 +291,7 @@ class Box {
        $params['user']   = Box::$user;
        $params['server'] = Box::$server;
        $params['db']     = Box::$db;
+//       $params['limit']  = Box::$limit;
 //       $params['table']  = Box::$table;
 //       $params['select'] = $_REQUEST['select'];
 

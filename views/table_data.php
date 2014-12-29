@@ -16,10 +16,25 @@
     Current database: <strong><?=Box::$db?></strong>
 
     <BR><BR>
-    <a class='button big' href='<?=Box::url('select',Box::$select)?>'>Data</a>
+    <a class='button big selected' href='<?=Box::url('select',Box::$select)?>'>Data</a>
     <a class='button big' href='<?=Box::url('table',Box::$select)?>'>Structure</a>
 
 
+    <div class='right'>
+        <form>
+            <input type='hidden' name='user'   value='<?=Box::$user?>' />
+            <input type='hidden' name='server' value='<?=Box::$server?>' />
+            <input type='hidden' name='db'     value='<?=Box::$db?>' />
+            <input type='hidden' name='select' value='<?=Box::$select?>' />
+
+
+            Limit
+            <input class='sm' type='text' name='limit' value='<?=Box::$limit?>'/>
+            <button type='submit' class='button small'>Refresh</button>
+        </form>
+    </div>
+
+    <div class="clear"></div>
         <BR><BR>
 
         <div class="clear"></div>

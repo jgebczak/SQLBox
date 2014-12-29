@@ -33,6 +33,10 @@ i
     margin-right:0.5em;
 }
 
+button
+{
+    border:0;
+}
 
 /* Main modifiers / Classes / common UI */
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -86,9 +90,25 @@ i
     border-bottom: 3px solid #595d9a;
 }
 
+.sm
+{
+    width:50px;
+}
+
+.md
+{
+    width:100px;
+}
+
+.lg
+{
+    width:200px;
+}
+
 .button.small
 {
-    padding:2px;
+    padding:3px;
+    font-size:0.9em;
     padding-left:11px;
     padding-right:11px;
 }
@@ -103,9 +123,10 @@ i
 .button.selected
 {
     background: white;
-    border:1px solid #9b9fdd;
+    /* border:1px solid #9b9fdd; */
     border-bottom: 3px solid #686B99;
     color:black;
+    font-weight:bold;
 }
 
 .black_line
@@ -123,6 +144,8 @@ i
 .clear
 {
     clear:both;
+    width:0;
+    height:0;
 }
 
 .left
