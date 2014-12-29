@@ -9,11 +9,14 @@
 
     <?php if ($tables): ?>
 
+
         <span class='fa-stack fa-lg gray12' style='font-size:1.0rem'>
             <i class="fa fa-circle fa-stack-2x"></i>
             <i style='color:white' class="fa fa-search fa-stack-1x"></i>
         </span>
+
         <input type='text' id='search' placeholder='Filter' />
+
         <BR><BR>
         <div class="clear"></div>
 
@@ -49,7 +52,6 @@
             <?php endforeach ?>
 
         </table>
-
 
     <?php else: ?>
 

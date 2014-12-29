@@ -1,48 +1,22 @@
 <?php
 //----------------------------------------------------------------------------------------------------------------------
-
-function autoloader($c)
-{
-    $class = 'classes/'.$c.'.php';
-    $engine = 'engines/'.$c.'.php';
-
-    // components
-    if (file_exists($class))
-        require ($class);
-    elseif (file_exists($engine))
-        require ($engine);
-    else
-        die('Class could not be found: '.$c);
-}
+require('../pt2/PT.php');
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function debug()
-{
-    echo '<pre>';
-    print_r (func_get_args());
-    die();
-}
+PT::import('classes/*');
+PT::import('engines/*');
 
-//----------------------------------------------------------------------------------------------------------------------
+//PT::errorHandler(error);
+PT::debugMode(PT::ip()=='127.0.0.1'?1:0);
 
-function isDev()
-{
-    return ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '66.238.6.34') ? 1:0;
-}
+PT::on('error.404',function(){echo 'Whoops, page not found!';});
+PT::on('test',function(){echo 'works!';});
 
+PT::routeAll('Box.route');
+PT::on('pt.start','Box::connect');
 
-//----------------------------------------------------------------------------------------------------------------------
-
-ini_set('display_errors', 1);
-session_start();
-error_reporting (E_ALL ^ E_NOTICE);
-spl_autoload_register ('autoloader');
-
-//----------------------------------------------------------------------------------------------------------------------
-
-Box::connect();
-Box::route();
+PT::start();
 
 //----------------------------------------------------------------------------------------------------------------------
 
