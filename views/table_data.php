@@ -16,10 +16,12 @@
     Current database: <strong><?=Box::$db?></strong>
 
     <BR><BR>
+    <!-- ACTION BUTTONS (DATA, STRUCTURE ETC.) -->
+
     <a class='button big selected' href='<?=Box::url('select',Box::$select)?>'>Data</a>
     <a class='button big' href='<?=Box::url('table',Box::$select)?>'>Structure</a>
 
-
+    <!-- FILTERS (LIMIT) -->
     <div class='right'>
         <form>
             <input type='hidden' name='user'   value='<?=Box::$user?>' />
@@ -27,17 +29,25 @@
             <input type='hidden' name='db'     value='<?=Box::$db?>' />
             <input type='hidden' name='select' value='<?=Box::$select?>' />
 
-
             Limit
-            <input class='sm' type='text' name='limit' value='<?=Box::$limit?>'/>
+            <input class='sm' type='number' name='limit' value='<?=Box::$limit?>'/>
             <button type='submit' class='button small'>Refresh</button>
         </form>
     </div>
 
     <div class="clear"></div>
-        <BR><BR>
+    <BR>
 
-        <div class="clear"></div>
+    <!-- QUERY VIEW -->
+    <?php if (Box::$query): ?>
+    <div class='query'>
+        <?=Box::$query?>
+    </div>
+    <?php endif; ?>
+
+    <BR>
+
+    <!-- DATA -->
 
         <table border='1' class='data' id='columns'>
 

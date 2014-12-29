@@ -32,11 +32,14 @@ static $total_rows;
 
         $limit = Box::$limit;
 
-        $data = Box::cmd("SELECT * FROM $table
-                          ORDER BY id desc
-                          LIMIT $limit")
+        $q = "SELECT * FROM $table
+                       ORDER BY id desc
+                       LIMIT $limit";
+
+        $data = Box::cmd($q)
          ->queryAll();
 
+        Box::$query = $q;
         return $data;
     }
 

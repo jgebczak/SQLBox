@@ -17,6 +17,9 @@ class Box {
     static $engine;
     static $db;
 
+    // temporary data
+    static $query;
+
     // actions
     static $table;
     static $select;

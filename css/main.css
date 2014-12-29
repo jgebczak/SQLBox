@@ -268,3 +268,13 @@ table.data
     overflow-y:auto;
     margin-right:1em;
 }
+
+.query
+{
+    padding:10px;
+    width:auto;
+    background:#eee;
+    border-radius:5px;
+    font-size:0.8em;
+    color:#333;
+}
