@@ -303,6 +303,8 @@ class Box {
 // create URL with new parameters, pass the existing standard ones
 // accepts array as argument or [key,value] pair
 
+    // CONTINUE: accept as array key/value, extra parameter ($keep) to move all existing parameters (parse_url).
+
     // url(field, value, keep)
     static function url()
     {

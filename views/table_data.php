@@ -81,12 +81,17 @@
 
     <!-- PAGINATION -->
 
+    <div class="clear"></div>
+    <BR>
     <?php if (Table::$pages>1): ?>
 
-    Page:
-    <a href=""></a>
-
-    <?=Table::$pages?>
+    <div class='pagination'>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        ...
+        <a href="#"><?=Table::$pages?></a>
+    </div>
 
     <?php endif ?>
 
