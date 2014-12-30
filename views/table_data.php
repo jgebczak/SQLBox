@@ -78,4 +78,16 @@
 
         </table>
 
+
+    <!-- PAGINATION -->
+
+    <?php if (Table::$pages>1): ?>
+
+    Page:
+    <a href=""></a>
+
+    <?=Table::$pages?>
+
+    <?php endif ?>
+
 </div>

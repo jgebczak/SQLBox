@@ -27,6 +27,7 @@ class Box {
     // filters
     static $limit;
     static $text_length;
+    static $page;
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -302,7 +303,7 @@ class Box {
 // create URL with new parameters, pass the existing standard ones
 // accepts array as argument or [key,value] pair
 
-    // url(field, value)
+    // url(field, value, keep)
     static function url()
     {
        $params['user']   = Box::$user;
