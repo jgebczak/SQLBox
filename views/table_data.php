@@ -12,6 +12,7 @@
 
 
 <div class='container'>
+    <form>
 
     Current database: <strong><?=Box::$db?></strong>
 
@@ -21,9 +22,13 @@
     <a class='button big selected' href='<?=Box::url(array('select'=>Box::$select))?>'>Data</a>
     <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>Structure</a>
 
+<?php if (0):?>
+    <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>Alter</a>
+    <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>New Item</a>
+<?php endif; ?>
+
     <!-- FILTERS (LIMIT) -->
     <div class='right'>
-        <form>
             <input type='hidden' name='user'   value='<?=Box::$user?>' />
             <input type='hidden' name='server' value='<?=Box::$server?>' />
             <input type='hidden' name='db'     value='<?=Box::$db?>' />
@@ -35,7 +40,6 @@
             Limit
             <input class='sm' type='number' name='limit' value='<?=Box::$limit?>'/>
             <button type='submit' class='button small'>Refresh</button>
-        </form>
     </div>
 
     <div class="clear"></div>
@@ -51,6 +55,14 @@
     <?php endif; ?>
 
     <BR>
+
+
+    <!-- SELECT, SEARCH AND SORTING -->
+
+    Select:
+    <input placeholder='Comma separated names' class='lg' type='text' name='fields' value='<?=Table::$fields?>'/>
+    <div class="clear space"></div>
+
 
     <!-- DATA -->
 
@@ -117,4 +129,5 @@
 
     <?php endif ?>
 
+    </form>
 </div>

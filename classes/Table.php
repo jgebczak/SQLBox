@@ -4,8 +4,12 @@ class Table {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+// table properties
 static $total_rows;
 static $pages;
+
+// table filters
+static $fields;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -33,6 +37,7 @@ static $pages;
 
         $limit = Box::$limit;
         Table::$pages = ceil(Table::$total_rows / $limit);
+        $fields = Table::$fields;
 
         $offset = 0;
         if (Box::$page>1)
@@ -40,7 +45,7 @@ static $pages;
             $offset = (Box::$page-1) * $limit;
         }
 
-        $q = Box::trimLines("SELECT * FROM $table
+        $q = Box::trimLines("SELECT $fields FROM $table
               ORDER BY id ASC
               LIMIT $offset,$limit");
 
@@ -56,16 +61,19 @@ static $pages;
 
     static function actionData()
     {
-        // filters
+        // filters (limit, page, text length)
         Box::$limit = $_REQUEST['limit'];
         Box::$page  = $_REQUEST['page'];
         if (!Box::$page) Box::$page=1;
-
         Box::$text_length = $_REQUEST['text_length'];
 
         if (!Box::$limit) Box::$limit = 10;
         if (!Box::$text_length) Box::$text_length = 50;
         if (!Box::$page)  Box::$page = 1;
+
+        // fields (columns)
+        Table::$fields = $_REQUEST['fields'];
+        if (!Table::$fields) Table::$fields = '*';
 
         // get table data
         $data['data']    = Table::getData(Box::$select);
