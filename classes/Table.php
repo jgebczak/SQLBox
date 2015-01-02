@@ -12,6 +12,7 @@ static $pages;
 static $fields;
 static $sort;
 static $order;
+static $search;
 
 //----------------------------------------------------------------------------------------------------------------------
 // get all the columns for a table in a specified order
@@ -81,8 +82,13 @@ static $order;
         if (Table::$sort)
             $order_block = 'ORDER BY '.Table::$sort.' '.Table::$order;
 
+        // search (WHERE block)
+        $search_block = '';
+        if (Table::$search)
+            $search_block = 'WHERE '.Table::$search;
+
         $q = Box::trimLines("SELECT $fields FROM $table
-              $order_block
+              $order_block $search_block
               LIMIT $offset,$limit");
 
         $data = Box::cmd($q)
@@ -115,6 +121,9 @@ static $order;
         Table::$sort = $_REQUEST['sort'];
         Table::$order = $_REQUEST['order'];
         if (!Table::$order) Table::$order='DESC';
+
+        // searching
+        Table::$search = $_REQUEST['search'];
 
         // get table data
         $data['data']    = Table::getData(Box::$select);
