@@ -86,6 +86,11 @@
     <?php if (Table::$pages>1): ?>
 
     <div class='pagination'>
+
+        <?php if (Box::$page>1): ?>
+            <a href="<?=Box::url(array('page'=>Box::$page-1),$keep=1)?>">Prev</a>
+        <?php endif ?>
+
         <?php if (Box::$page>6): ?>
             <a href="<?=Box::url(array('page'=>1),$keep=1)?>">1</a> ...
         <?php endif ?>
@@ -103,6 +108,11 @@
         <?php if (Box::$page<Table::$pages - 4): ?>
             ... <a href="<?=Box::url(array('page'=>Table::$pages),$keep=1)?>"><?=Table::$pages?></a>
         <?php endif ?>
+
+        <?php if (Box::$page < Table::$pages): ?>
+            <a href="<?=Box::url(array('page'=>Box::$page+1),$keep=1)?>">Next</a>
+        <?php endif ?>
+
     </div>
 
     <?php endif ?>
