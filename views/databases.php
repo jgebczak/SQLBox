@@ -19,7 +19,7 @@
             <?php foreach ($dbs as $db => $details): ?>
 
                 <tr>
-                    <td><a class='select_db' href="<?=Box::url('db',$db)?>"><?=$db?></a></td>
+                    <td><a class='select_db' href="<?=Box::url(array('db'=>$db))?>"><?=$db?></a></td>
                     <td style='text-align:right'><?=$details['tables']?></td>
                     <td style='text-align:right'> <?=$details['rows']?></td>
                     <td style='text-align:right'><?=Box::formatDataSize($details['data_size'])?></td>

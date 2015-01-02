@@ -6,8 +6,8 @@
     Current database: <strong><?=Box::$db?></strong>
 
     <BR><BR>
-    <a class='button big' href='<?=Box::url('select',Box::$table)?>'>Data</a>
-    <a class='button big selected' href='<?=Box::url('table',Box::$table)?>'>Structure</a>
+    <a class='button big' href='<?=Box::url(array('select'=>Box::$table))?>'>Data</a>
+    <a class='button big selected' href='<?=Box::url(array('table'=>Box::$table))?>'>Structure</a>
 
 
         <BR><BR>

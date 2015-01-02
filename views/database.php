@@ -40,7 +40,7 @@
                 ?>
 
                 <tr data-name='<?=$t['TABLE_NAME']?>'>
-                    <td><a class='select_table' href="<?=Box::url('table',$t['TABLE_NAME'])?>"><?=$t['TABLE_NAME']?></a></td>
+                    <td><a class='select_table' href="<?=Box::url(array('table'=>$t['TABLE_NAME']))?>"><?=$t['TABLE_NAME']?></a></td>
                     <td style='text-align:right'><?=Box::formatDataSize($t['DATA_LENGTH'])?></td>
                     <td><?=$t['ENGINE']?></td>
                     <td><?=$t['TABLE_COLLATION']?></td>

@@ -306,23 +306,11 @@ class Box {
     // CONTINUE: accept as array key/value, extra parameter ($keep) to move all existing parameters (parse_url).
 
     // url(field, value, keep)
-    static function url()
+    static function url($params,$keep=0)
     {
-       $params['user']   = Box::$user;
-       $params['server'] = Box::$server;
-       $params['db']     = Box::$db;
-//       $params['limit']  = Box::$limit;
-//       $params['table']  = Box::$table;
-//       $params['select'] = $_REQUEST['select'];
-
-       $args = func_get_args();
-
-       if (is_array($args[0]))
-           $params += $args[0];
-       else
-       {
-           $params[$args[0]] = $args[1];
-       }
+       if (!$params['user'])   $params['user']   = Box::$user;
+       if (!$params['server']) $params['server'] = Box::$server;
+       if (!$params['db'])     $params['db']     = Box::$db;
 
        return '/?'.http_build_query($params);
     }

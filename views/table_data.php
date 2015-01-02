@@ -18,8 +18,8 @@
     <BR><BR>
     <!-- ACTION BUTTONS (DATA, STRUCTURE ETC.) -->
 
-    <a class='button big selected' href='<?=Box::url('select',Box::$select)?>'>Data</a>
-    <a class='button big' href='<?=Box::url('table',Box::$select)?>'>Structure</a>
+    <a class='button big selected' href='<?=Box::url(array('select'=>Box::$select))?>'>Data</a>
+    <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>Structure</a>
 
     <!-- FILTERS (LIMIT) -->
     <div class='right'>
