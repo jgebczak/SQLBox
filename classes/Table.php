@@ -12,6 +12,7 @@ static $pages;
 static $fields;
 
 //----------------------------------------------------------------------------------------------------------------------
+// get all the columns for a table in a specified order
 
     static function getColumns ($table)
     {
@@ -26,6 +27,32 @@ static $fields;
          ->queryAll();
 
         return $columns;
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+// based on the data return, grab the details for each column (if it is a column)
+
+    static function getColumnDetails ($table,$data)
+    {
+        $fields = array_keys ($data[0]);
+        $details = array();
+
+        foreach ($fields as $f) {
+
+            $details[$f] = Box::cmd('SELECT *
+                                 FROM information_schema.columns
+                                 WHERE table_schema = :db
+                                 AND table_name     = :table
+                                 AND column_name    = :field
+                                 ')
+             ->bindValue(':db', Box::$db)
+             ->bindValue(':table', $table)
+             ->bindValue(':field', $f)
+             ->queryRow();
+
+        }
+
+        return $details;
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -77,7 +104,7 @@ static $fields;
 
         // get table data
         $data['data']    = Table::getData(Box::$select);
-        $data['columns'] = Table::getColumns(Box::$select);
+        $data['columns'] = Table::getColumnDetails(Box::$select,$data['data']);
 
         Box::$title = 'Data: '.Box::$select.' ('.Table::$total_rows.')';
         Box::$action = 'select';

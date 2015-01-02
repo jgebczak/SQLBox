@@ -69,8 +69,8 @@
         <table border='1' class='data' id='columns'>
 
             <tr class='header'>
-            <?php foreach ($columns as $c): ?>
-                <th><?=$c['COLUMN_NAME']?></th>
+            <?php foreach ($columns as $kname => $c): ?>
+                <th><?=$c ? $c['COLUMN_NAME']:$kname?></th>
             <?php endforeach ?>
             </tr>
 
