@@ -1,3 +1,6 @@
+<?php include('widgets/table.sorting_tooltip.php'); ?>
+
+
 <style type="text/css">
 
     xmp
@@ -39,7 +42,7 @@
 
             Limit
             <input class='sm' type='number' name='limit' value='<?=Box::$limit?>'/>
-            <button type='submit' class='button small'>Refresh</button>
+            <button id='btn_refresh' type='submit' class='button small'>Refresh</button>
     </div>
 
     <div class="clear"></div>
@@ -79,7 +82,6 @@
     <button type='submit' class='button small'>Refresh</button>
     <div class="clear space10"></div>
 
-
     <!-- DATA -->
 
     <?php if ($data): ?>
@@ -88,7 +90,7 @@
 
             <tr class='header'>
             <?php foreach ($columns as $kname => $c): ?>
-                <th><?=$c ? $c['COLUMN_NAME']:$kname?></th>
+                <th class='column'><?=$c ? $c['COLUMN_NAME']:$kname?></th>
             <?php endforeach ?>
             </tr>
 
@@ -159,6 +161,16 @@
 
 <script type="text/javascript">
 //----------------------------------------------------------------------------------------------------------------------
+
+var current_column = '';
+
+    function sortColumn(order)
+    {
+        if (!current_column || current_column == '') return;
+        $("#sort").val(current_column)
+        $("#order").val(order)
+        $("form").submit();
+    }
 
     $(document).ready(function(){
         $("#fields").focus();
