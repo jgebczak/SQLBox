@@ -284,6 +284,17 @@ table.data
     margin-bottom:5px;
 }
 
+.space10
+{
+    margin-bottom:10px;
+}
+
+.space15
+{
+    margin-bottom:15px;
+}
+
+
 .pagination a
 {
     border-radius:3px;

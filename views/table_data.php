@@ -56,15 +56,33 @@
 
     <BR>
 
-
     <!-- SELECT, SEARCH AND SORTING -->
 
     Select:
-    <input placeholder='Comma separated names' class='lg' type='text' name='fields' value='<?=Table::$fields?>'/>
-    <div class="clear space"></div>
+    <input placeholder='Comma separated names' class='lg' type='text' id='fields' name='fields' value='<?=Table::$fields?>'/>
+
+    Sort by:
+    <select id='sort' name='sort'>
+        <?php if ($columns) foreach ($columns as $kname => $c): ?>
+                <?php $sel = (Table::$sort == $kname) ? 'selected="selected"':''?>
+                <option <?=$sel?> value='<?=$kname?>'><?=$kname?></option>
+        <?php endforeach; ?>
+    </select>
+
+    <select id='order' name='order'>
+            <?php $sel_asc  = (Table::$order == 'ASC') ?  'selected="selected"':''?>
+            <option <?=$sel_asc?>  value='ASC'>Ascending</option>
+
+            <?php $sel_desc = (Table::$order == 'DESC') ? 'selected="selected"':''?>
+            <option <?=$sel_desc?> value='DESC'>Descending</option>
+    </select>
+    <button type='submit' class='button small'>Refresh</button>
+    <div class="clear space10"></div>
 
 
     <!-- DATA -->
+
+    <?php if ($data): ?>
 
         <table border='1' class='data' id='columns'>
 
@@ -90,6 +108,12 @@
 
         </table>
 
+    <?php else: ?>
+
+    <BR>
+    No data returned.
+
+    <?php endif ?>
 
     <!-- PAGINATION -->
 
@@ -131,3 +155,14 @@
 
     </form>
 </div>
+
+
+<script type="text/javascript">
+//----------------------------------------------------------------------------------------------------------------------
+
+    $(document).ready(function(){
+        $("#fields").focus();
+    });
+
+//----------------------------------------------------------------------------------------------------------------------
+</script>

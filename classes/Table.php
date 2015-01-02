@@ -10,6 +10,8 @@ static $pages;
 
 // table filters
 static $fields;
+static $sort;
+static $order;
 
 //----------------------------------------------------------------------------------------------------------------------
 // get all the columns for a table in a specified order
@@ -34,6 +36,8 @@ static $fields;
 
     static function getColumnDetails ($table,$data)
     {
+        if (!$data || !$data[0]) return array();
+
         $fields = array_keys ($data[0]);
         $details = array();
 
@@ -72,8 +76,13 @@ static $fields;
             $offset = (Box::$page-1) * $limit;
         }
 
+        // specifying order only if used
+        $order_block='';
+        if (Table::$sort)
+            $order_block = 'ORDER BY '.Table::$sort.' '.Table::$order;
+
         $q = Box::trimLines("SELECT $fields FROM $table
-              ORDER BY id ASC
+              $order_block
               LIMIT $offset,$limit");
 
         $data = Box::cmd($q)
@@ -101,6 +110,11 @@ static $fields;
         // fields (columns)
         Table::$fields = $_REQUEST['fields'];
         if (!Table::$fields) Table::$fields = '*';
+
+        // sorting
+        Table::$sort = $_REQUEST['sort'];
+        Table::$order = $_REQUEST['order'];
+        if (!Table::$order) Table::$order='DESC';
 
         // get table data
         $data['data']    = Table::getData(Box::$select);
