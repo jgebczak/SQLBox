@@ -296,6 +296,14 @@ table.data
     background:#aaa;
 }
 
+.pagination a.current
+{
+    background:#b3d4fc;
+    padding:11px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
 .syntaxhighlighter .toolbar
 {
     display:none;

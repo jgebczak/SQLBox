@@ -312,6 +312,9 @@ class Box {
        if (!$params['server']) $params['server'] = Box::$server;
        if (!$params['db'])     $params['db']     = Box::$db;
 
+       if ($keep)
+           $params = array_merge($_REQUEST,$params);
+
        return '/?'.http_build_query($params);
     }
 

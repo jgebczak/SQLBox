@@ -86,11 +86,23 @@
     <?php if (Table::$pages>1): ?>
 
     <div class='pagination'>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        ...
-        <a href="#"><?=Table::$pages?></a>
+        <?php if (Box::$page>6): ?>
+            <a href="<?=Box::url(array('page'=>1),$keep=1)?>">1</a> ...
+        <?php endif ?>
+
+        <?php
+        for ($i=Box::$page-5; $i < Box::$page+5; $i++) {
+
+            if ($i > 0 && $i <= Table::$pages) {
+            ?>
+                <a <?=($i==Box::$page)?'class="current"':''?> href="<?=Box::url(array('page'=>$i),$keep=1)?>"><?=$i?></a>
+            <?php
+            }
+        }
+        ?>
+        <?php if (Box::$page<Table::$pages - 4): ?>
+            ... <a href="<?=Box::url(array('page'=>Table::$pages),$keep=1)?>"><?=Table::$pages?></a>
+        <?php endif ?>
     </div>
 
     <?php endif ?>

@@ -37,11 +37,11 @@ static $pages;
         $offset = 0;
         if (Box::$page>1)
         {
-            $offset = ($page-1) * $limit;
+            $offset = (Box::$page-1) * $limit;
         }
 
         $q = Box::trimLines("SELECT * FROM $table
-              ORDER BY id desc
+              ORDER BY id ASC
               LIMIT $offset,$limit");
 
         $data = Box::cmd($q)
@@ -59,6 +59,8 @@ static $pages;
         // filters
         Box::$limit = $_REQUEST['limit'];
         Box::$page  = $_REQUEST['page'];
+        if (!Box::$page) Box::$page=1;
+
         Box::$text_length = $_REQUEST['text_length'];
 
         if (!Box::$limit) Box::$limit = 10;
