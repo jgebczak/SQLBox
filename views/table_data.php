@@ -62,7 +62,7 @@
     <!-- SELECT, SEARCH AND SORTING -->
 
     Search:
-    <input placeholder='ie. id>1' class='lg' type='text' id='search' name='search' value='<?=urldecode(Table::$search)?>'/>
+    <input placeholder='ie. id>1' class='lg' type='text' id='search' name='search' value="<?=Table::$search?>"/>
 
     Select:
     <input placeholder='Comma separated names' class='lg' type='text' id='fields' name='fields' value='<?=Table::$fields?>'/>

@@ -85,10 +85,10 @@ static $search;
         // search (WHERE block)
         $search_block = '';
         if (Table::$search)
-            $search_block = 'WHERE '.Table::$search;
+            $search_block = 'WHERE '.Table::$search.PHP_EOL;
 
         $q = Box::trimLines("SELECT $fields FROM $table
-              $order_block $search_block
+              $search_block $order_block
               LIMIT $offset,$limit");
 
         $data = Box::cmd($q)
@@ -124,6 +124,7 @@ static $search;
 
         // searching
         Table::$search = $_REQUEST['search'];
+        Table::$search = str_replace('"',"'", Table::$search);
 
         // get table data
         $data['data']    = Table::getData(Box::$select);
