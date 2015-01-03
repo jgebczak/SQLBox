@@ -20,6 +20,10 @@
     Current database: <strong><?=Box::$db?></strong>
 
     <BR><BR>
+
+
+
+    <!-- =========================================================================================================== -->
     <!-- ACTION BUTTONS (DATA, STRUCTURE ETC.) -->
 
     <a class='button big selected' href='<?=Box::url(array('select'=>Box::$select))?>'>Data</a>
@@ -30,6 +34,10 @@
     <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>New Item</a>
 <?php endif; ?>
 
+
+
+
+    <!-- =========================================================================================================== -->
     <!-- FILTERS (LIMIT) -->
     <div class='right'>
             <input type='hidden' name='user'   value='<?=Box::$user?>' />
@@ -48,6 +56,10 @@
     <div class="clear"></div>
     <BR>
 
+
+
+
+    <!-- =========================================================================================================== -->
     <!-- QUERY VIEW -->
 
     <span class='query_time'>Execution time: <?=Box::$query_time?> s</span>
@@ -62,6 +74,10 @@
 
     <BR>
 
+
+
+
+    <!-- =========================================================================================================== -->
     <!-- SELECT, SEARCH AND SORTING -->
 
     Search:
@@ -88,6 +104,9 @@
     <button type='submit' class='button small'>Refresh</button>
     <div class="clear space10"></div>
 
+
+
+    <!-- =========================================================================================================== -->
     <!-- DATA -->
 
     <?php if ($data): ?>
@@ -95,6 +114,9 @@
         <table border='1' class='data' id='columns'>
 
             <tr class='header'>
+                <th>
+
+                </th>
             <?php foreach ($columns as $kname => $c): ?>
                 <th class='column'><?=$c ? $c['COLUMN_NAME']:$kname?></th>
             <?php endforeach ?>
@@ -104,6 +126,9 @@
 
                 <?php $i = 0; ?>
                 <tr>
+                    <td>
+                        <a href='<?=Box::url(array('edit'=>Box::$select,'where'=>$primary_key.'='.$row[$primary_key]))?>'><i class="fa fa-pencil-square-o"></i></a>
+                    </td>
                     <?php foreach ($row as $key => $value): ?>
                         <td>
                             <xmp style='<?=Box::format($value,$columns[$key])?>'><?=Box::value($value,$columns[$key])?></xmp>
@@ -123,6 +148,10 @@
 
     <?php endif ?>
 
+
+
+
+    <!-- =========================================================================================================== -->
     <!-- PAGINATION -->
 
     <div class="clear"></div>
@@ -163,6 +192,8 @@
 
     </form>
 </div>
+
+
 
 
 <script type="text/javascript">

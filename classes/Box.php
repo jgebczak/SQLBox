@@ -23,6 +23,7 @@ class Box {
     // actions
     static $table;
     static $select;
+    static $edit;
 
     // filters
     static $limit;
@@ -308,6 +309,16 @@ class Box {
             Table::actionIndex();
             return;
         }
+
+        // table - edit (in separate window)
+        if (isset($_REQUEST['edit']))
+        {
+            Box::$edit  = $_REQUEST['edit'];
+            Edit::$where = $_REQUEST['where'];
+            Edit::actionIndex();
+            return;
+        }
+
 
         // table - data (select)
         if (isset($_REQUEST['select']))

@@ -60,6 +60,20 @@ static $search;
         return $details;
     }
 
+
+//----------------------------------------------------------------------------------------------------------------------
+// get primary key that will be used to build a link for editing a record
+
+
+    static function getPrimaryKey($columns)
+    {
+        foreach ($columns as $c) {
+            if ($c['COLUMN_KEY']=='PRI')
+                return $c['COLUMN_NAME'];
+        }
+    }
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
     static function getShorthand ($s)
@@ -181,8 +195,9 @@ static $search;
         Table::$search = str_replace('"',"'", Table::$search);
 
         // get table data
-        $data['data']    = Table::getData(Box::$select);
-        $data['columns'] = Table::getColumnDetails(Box::$select,$data['data']);
+        $data['data']         = Table::getData(Box::$select);
+        $data['columns']      = Table::getColumnDetails(Box::$select,$data['data']);
+        $data['primary_key']  = Table::getPrimaryKey($data['columns']);
 
         Box::$title = 'Data: '.Box::$select.' ('.Table::$total_rows.')';
         Box::$action = 'select';

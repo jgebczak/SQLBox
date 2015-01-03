@@ -14,7 +14,12 @@
 
                     <a href="/"><?=Box::$engine?></a>
 
-                    <?php if (Box::$select): ?>
+                    <?php if (Box::$edit): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
+                        > Edit: <?=Box::$edit?>
+
+                    <?php elseif (Box::$select): ?>
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
                         > Data: <?=Box::$select?>
