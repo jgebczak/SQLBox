@@ -105,6 +105,8 @@ static $search;
 
     static function getData ($table)
     {
+        Box::$start_time = microtime(true);
+
         // specifying order only if used
         $order_block='';
         if (Table::$sort)
@@ -142,6 +144,9 @@ static $search;
 
         $data = Box::cmd($q)
                 ->queryAll();
+
+        Box::$end_time = microtime(true);
+        Box::$query_time = number_format(Box::$end_time - Box::$start_time,3);
 
         Box::$query = $q;
         return $data;

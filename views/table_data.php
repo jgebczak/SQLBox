@@ -49,6 +49,9 @@
     <BR>
 
     <!-- QUERY VIEW -->
+
+    <span class='query_time'>Execution time: <?=Box::$query_time?> s</span>
+
     <?php if (Box::$query): ?>
     <div class='query'>
         <script type="syntaxhighlighter" class="brush: sql"><![CDATA[

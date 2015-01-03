@@ -29,6 +29,11 @@ class Box {
     static $text_length;
     static $page;
 
+    // profiling/execution time
+    static $start_time;
+    static $end_time;
+    static $query_time;
+
 
 //----------------------------------------------------------------------------------------------------------------------
 

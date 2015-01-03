@@ -285,6 +285,12 @@ table.data
     color:#333;
 }
 
+.query_time
+{
+    color:#777;
+    font-size:0.7em;
+}
+
 .space
 {
     margin-bottom:5px;
