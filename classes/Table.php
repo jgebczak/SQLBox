@@ -62,6 +62,47 @@ static $search;
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    static function getShorthand ($s)
+    {
+        // 5      =>   id = 5
+        if (is_numeric($s))
+            return 'id = '.$s;
+
+        // 5-10   =>   id between 5 and 10 (with spaces around dash or without)
+        if (preg_match('/^\d+\s*-\s*\d+$/', $s))
+            return preg_replace('/(\d+)\s*-\s*(\d*)/', 'id BETWEEN $1 AND $2', $s);
+
+        // 5+     =>   id >= 5
+        if (preg_match('/^\d+\+$/', $s))
+            return preg_replace('/^(\d+)\+$/', 'id >= $1', $s);
+
+        // 5-     =>   id <= 5
+        if (preg_match('/^\d+\-$/', $s))
+            return preg_replace('/^(\d+)\-$/', 'id <= $1', $s);
+
+        // >5     =>   id > 5
+        if (preg_match('/^>\d+$/', $s))
+            return preg_replace('/^>(\d+)$/', 'id > $1', $s);
+
+        // <5     =>   id < 5
+        if (preg_match('/^<\d+$/', $s))
+            return preg_replace('/^<(\d+)$/', 'id < $1', $s);
+
+        // >=5     =>   id >= 5
+        if (preg_match('/^>=\d+$/', $s))
+            return preg_replace('/^>=(\d+)$/', 'id >= $1', $s);
+
+        // <=5     =>   id <= 5
+        else if (preg_match('/^<=\d+$/', $s))
+            return preg_replace('/^<=(\d+)$/', 'id <= $1', $s);
+
+
+        // no matches?
+        return $s;
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
     static function getData ($table)
     {
         Table::$total_rows = Box::cmd("SELECT count(*) FROM $table")
@@ -85,7 +126,13 @@ static $search;
         // search (WHERE block)
         $search_block = '';
         if (Table::$search)
-            $search_block = 'WHERE '.Table::$search.PHP_EOL;
+        {
+            $s = Table::$search;
+
+            // translate shorthand expressions (if used)
+            $s = Table::getShorthand($s);
+            $search_block = 'WHERE '.$s.PHP_EOL;
+        }
 
         $q = Box::trimLines("SELECT $fields FROM $table
               $search_block $order_block
