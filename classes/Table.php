@@ -105,19 +105,6 @@ static $search;
 
     static function getData ($table)
     {
-        Table::$total_rows = Box::cmd("SELECT count(*) FROM $table")
-                 ->queryScalar();
-
-        $limit = Box::$limit;
-        Table::$pages = ceil(Table::$total_rows / $limit);
-        $fields = Table::$fields;
-
-        $offset = 0;
-        if (Box::$page>1)
-        {
-            $offset = (Box::$page-1) * $limit;
-        }
-
         // specifying order only if used
         $order_block='';
         if (Table::$sort)
@@ -134,12 +121,27 @@ static $search;
             $search_block = 'WHERE '.$s.PHP_EOL;
         }
 
+        // get totals rows (for pagination)
+        Table::$total_rows = Box::cmd("SELECT count(*) FROM $table $search_block")
+                 ->queryScalar();
+
+        $limit = Box::$limit;
+        Table::$pages = ceil(Table::$total_rows / $limit);
+        $fields = Table::$fields;
+
+        $offset = 0;
+        if (Box::$page>1)
+        {
+            $offset = (Box::$page-1) * $limit;
+        }
+
+        // make paginated query now
         $q = Box::trimLines("SELECT $fields FROM $table
               $search_block $order_block
               LIMIT $offset,$limit");
 
         $data = Box::cmd($q)
-         ->queryAll();
+                ->queryAll();
 
         Box::$query = $q;
         return $data;
