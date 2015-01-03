@@ -103,7 +103,7 @@
                 <tr>
                     <?php foreach ($row as $key => $value): ?>
                         <td>
-                            <xmp><?=Box::value($value,$columns[$i])?></xmp>
+                            <xmp style='<?=Box::format($value,$columns[$key])?>'><?=Box::value($value,$columns[$key])?></xmp>
                         </td>
                         <?php $i++; ?>
                     <?php endforeach ?>

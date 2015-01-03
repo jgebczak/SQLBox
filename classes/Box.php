@@ -66,7 +66,68 @@ class Box {
         die();
     }
 
+
 //----------------------------------------------------------------------------------------------------------------------
+// adjust format (textcolor based on column type)
+
+    static function format ($v, $column)
+    {
+        $type = $column['DATA_TYPE'];
+
+        $style_number = 'color:blue';
+        $style_char   = 'color:#444';
+        $style_text   = 'color:#777';
+        $style_date   = 'color:green';
+        $style_enum   = 'color:purple';
+        $style_blob   = 'color:red';
+
+        $styles = array(
+
+            // integers and floats (9)
+            'int'       =>  $style_number,
+            'bigint'    =>  $style_number,
+            'smallint'  =>  $style_number,
+            'mediumint' =>  $style_number,
+            'double'    =>  $style_number,
+            'float'     =>  $style_number,
+            'decimal'   =>  $style_number,
+            'binary'    =>  $style_number,
+            'varbinary' =>  $style_number,
+
+            // char (2)
+            'varchar'   =>  $style_char,
+            'char'      =>  $style_char,
+
+            // date (4)
+            'timestamp' =>  $style_date,
+            'time'      =>  $style_date,
+            'date'      =>  $style_date,
+            'datetime'  =>  $style_date,
+            'year'      =>  $style_date,
+
+            // text (4)
+            'text'      =>  $style_text,
+            'tinytext'  =>  $style_text,
+            'mediumtext'=>  $style_text,
+            'longtext'  =>  $style_text,
+
+            // enum/set (2)
+            'enum'      =>  $style_enum,
+            'set'       =>  $style_enum,
+
+            // blob (4)
+            'blob'      =>  $style_blob,
+            'longblob'  =>  $style_blob,
+            'mediumblob'=>  $style_blob,
+            'tinyblob'  =>  $style_blob,
+        );
+
+        return $styles[$type];
+    }
+
+
+//----------------------------------------------------------------------------------------------------------------------
+// adjust value (for now, truncate only)
 
     static function value ($v, $column)
     {
