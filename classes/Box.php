@@ -73,6 +73,37 @@ class Box {
     }
 
 
+
+//----------------------------------------------------------------------------------------------------------------------
+// return internal data base based on MySQL column types
+// each data type should have a separate handling (editor tool)
+
+    static function dataType ($t)
+    {
+        $number    = array('int','bigint','mediumint','smallint');
+        $float     = array('float','double','decimal');
+        $char      = array('char','varchar');
+        $text      = array('text','tinytext','mediumtext','longtext');
+        $blob      = array('blog','mediumblob','longblob','tinyblob');
+        $date      = array('date');
+        $datetime  = array('datetime');
+        $timestamp = array('timestamp');
+        $enum      = array('enum');
+        $set       = array('set');
+
+        if (in_array($t, $number))    return 'number';
+        if (in_array($t, $float))     return 'float';
+        if (in_array($t, $char))      return 'char';
+        if (in_array($t, $text))      return 'text';
+        if (in_array($t, $blob))      return 'blob';
+        if (in_array($t, $date))      return 'date';
+        if (in_array($t, $datetime))  return 'datetime';
+        if (in_array($t, $timestamp)) return 'timestamp';
+        if (in_array($t, $enum))      return 'enum';
+        if (in_array($t, $set))       return 'set';
+    }
+
+
 //----------------------------------------------------------------------------------------------------------------------
 // adjust format (textcolor based on column type)
 

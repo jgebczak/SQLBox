@@ -13,9 +13,13 @@
             <?php foreach ($columns as $c): ?>
 
             <?php
-                $col = $c['COLUMN_NAME'];
-                $v = $values[$col];
-                $v = str_replace('"',"&quot;", $v);
+                $col  = $c['COLUMN_NAME'];
+                $type = Box::dataType($c['DATA_TYPE']);
+
+                echo $type;
+
+                $v    = $values[$col];
+                $v    = str_replace('"',"&quot;", $v);
              ?>
 
                 <tr>
