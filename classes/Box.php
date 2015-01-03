@@ -319,6 +319,14 @@ class Box {
             return;
         }
 
+        if (isset($_REQUEST['editsave']))
+        {
+            Box::$edit  = $_REQUEST['editsave'];
+            Edit::$where = $_REQUEST['where'];
+            Edit::actionSave();
+            return;
+        }
+
 
         // table - data (select)
         if (isset($_REQUEST['select']))

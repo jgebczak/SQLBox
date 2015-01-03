@@ -21,7 +21,7 @@
 
     <BR><BR>
 
-
+    <?php include('widgets/alerts.php'); ?>
 
     <!-- =========================================================================================================== -->
     <!-- ACTION BUTTONS (DATA, STRUCTURE ETC.) -->
@@ -33,8 +33,6 @@
     <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>Alter</a>
     <a class='button big' href='<?=Box::url(array('table'=>Box::$select))?>'>New Item</a>
 <?php endif; ?>
-
-
 
 
     <!-- =========================================================================================================== -->

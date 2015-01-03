@@ -38,6 +38,11 @@ button
     border:0;
 }
 
+input[type=submit]
+{
+    border:0;
+}
+
 /* Main modifiers / Classes / common UI */
 /*--------------------------------------------------------------------------------------------------------------------*/
 
@@ -46,6 +51,8 @@ button
 .round4 {border-radius:4px;}
 .round3 {border-radius:3px;}
 .round2 {border-radius:2px;}
+
+
 
 
 .alert_box
@@ -78,7 +85,7 @@ button
     padding-right:15px;
     color:white;
     background:#686caa;
-    border-bottom: 2px solid #595d9a;
+    border-bottom: 2px solid #595d9a !important;
     border-radius:4px;
 }
 
@@ -104,6 +111,7 @@ button
 {
     width:200px;
 }
+
 
 .button.small
 {

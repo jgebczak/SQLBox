@@ -2,6 +2,8 @@
 
 <div class='container'>
 
+    <form action="<?=Box::url(array('editsave'=>Box::$edit, 'where'=>Edit::$where))?>" method='POST' enctype='multipart/form-data'>
+
         <table border='1' class='data' id='databases'>
             <tr class='header'>
                 <th>Field</th>
@@ -10,10 +12,16 @@
 
             <?php foreach ($columns as $c): ?>
 
+            <?php
+                $col = $c['COLUMN_NAME'];
+                $v = $values[$col];
+                $v = str_replace('"',"&quot;", $v);
+             ?>
+
                 <tr>
-                    <td><?=$c['COLUMN_NAME']?></td>
+                    <td><?=$col?></td>
                     <td>
-                        <input type='text'/>
+                        <input type='text' name='<?=$col?>' value="<?=$v?>"/>
                     </td>
                 </tr>
 
@@ -22,8 +30,10 @@
         </table>
 
         <BR>
-        <a class='button small' href='javascript:void(0)' onclick='Save'>Save</a>
-        <a class='button small' href='javascript:void(0)' onclick='Save'>Cancel</a>
+        <input type='submit' class='button small' value='Save'/>
+        <a class='button small' href='<?=Box::url(array('select'=>Box::$edit))?>'>Cancel</a>
+
+    </form>
 
 </div>
 
