@@ -36,3 +36,5 @@
 </script>
 
 <body>
+
+    <?php include('widgets/global.shortcuts.php');?>

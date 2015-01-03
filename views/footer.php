@@ -1,3 +1,4 @@
+
           <script src="js/main.js"></script>
 
     </body>
@@ -17,7 +18,6 @@ $(document).ready(function() {
         var currHeight = $(window).height();
         $('#sidebar, #panel').css('height', currHeight);
     });
-
 });
 
 //----------------------------------------------------------------------------------------------------------------------
