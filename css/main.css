@@ -204,6 +204,13 @@ table.data
     }
 
 
+.sidebar_table.selected
+{
+    background:#ccc;
+    color:white !important;
+}
+
+
 .small_container
 {
     padding:0.25rem;
