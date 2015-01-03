@@ -17,13 +17,20 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="/vendor/font-awesome-4.2.0/css/font-awesome.min.css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/vendor/jquery-2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
+<!--
     <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
     <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
     <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
     <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSQL.js" type="text/javascript"></script>
+
+ -->
+    <link  href="/vendor/syntax-highlighter-3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <script src="/vendor/syntax-highlighter-3.0.83/scripts/shCore.js" type="text/javascript"></script>
+    <script src="/vendor/syntax-highlighter-3.0.83/scripts/shAutoloader.js" type="text/javascript"></script>
+    <script src="/vendor/syntax-highlighter-3.0.83/scripts/shBrushSQL.js" type="text/javascript"></script>
+
 
 </head>
 
