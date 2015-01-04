@@ -72,8 +72,6 @@ class Box {
         die();
     }
 
-
-
 //----------------------------------------------------------------------------------------------------------------------
 // return internal data base based on MySQL column types
 // each data type should have a separate handling (editor tool)

@@ -36,7 +36,12 @@
                         <?php endif ?>
 
                         <?php if ($type=='enum'): ?>
-                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+
+                            <select name='<?=$col?>'>
+                                <?php if ($enum_values = Edit::getEnumValues(Box::$edit, $col)) foreach ($enum_values as $enum_v): ?>
+                                    <?=Html::option($enum_v,'',$enum_v,$enum_v==$v)?>
+                                <?php endforeach; ?>
+                            </select>
                         <?php endif ?>
 
                         <?php if ($type=='set'): ?>

@@ -9,6 +9,18 @@ static $where;
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+    static function getEnumValues( $table, $field )
+    {
+        $row = Box::cmd( "SHOW COLUMNS FROM {$table} WHERE Field = '{$field}'" )->queryRow();
+        $type = $row['Type'];
+
+        preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
+        $enum = explode("','", $matches[1]);
+        return $enum;
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
 // default view - list all of fields top to bottom and allow editing
 
     static function actionIndex()
