@@ -2,7 +2,7 @@
 
 <div class='container'>
 
-    <form action="<?=Box::url(array('editsave'=>Box::$edit, 'where'=>Edit::$where))?>" method='POST' enctype='multipart/form-data'>
+    <form action="<?=Box::url(array('editsave'=>Box::$edit, 'mode' => $mode, 'where'=>Edit::$where))?>" method='POST' enctype='multipart/form-data'>
 
         <table border='1' class='data' id='databases'>
             <tr class='header'>
@@ -23,7 +23,7 @@
 
                 <tr>
                     <td style='min-width:130px;'><?=$col?></td>
-                    <td>
+                    <td class='value'>
                         <?php if ($type=='number' || $type=='float'): ?>
                              <input type='number' name='<?=$col?>' value="<?=$v?>"/>
                         <?php endif ?>
@@ -86,9 +86,18 @@
         </table>
 
         <BR>
-        <input type='submit' class='button big' value='Save'/>
+
+        <?php if ($mode=='add'): ?>
+            <input type='submit' class='button big' value='Insert'/>
+        <?php else: ?>
+            <input type='submit' class='button big' value='Save'/>
+        <?php endif ?>
+
         <a class='button small' href='<?=Box::url(array('select'=>Box::$edit))?>'>Cancel</a>
-        <a class='button small red' onclick='return confirm("Are you sure?");' href='<?=Box::url(array('delete'=>Box::$edit, 'where'=>Edit::$where))?>'>Delete</a>
+
+        <?php if ($mode=='edit'): ?>
+            <a class='button small red' onclick='return confirm("Are you sure?");' href='<?=Box::url(array('delete'=>Box::$edit, 'where'=>Edit::$where))?>'>Delete</a>
+        <?php endif; ?>
 
     </form>
 
@@ -101,6 +110,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 $(document).ready(function(){
+        $(".value").eq(0).find('input,textarea,select').focus();
 });
 
 //----------------------------------------------------------------------------------------------------------------------

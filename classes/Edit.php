@@ -54,16 +54,37 @@ static $where;
                                     WHERE $where")
          ->queryRow();
 
+        $data['mode'] = 'edit';
+        Box::render('edit', $data);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+// adding a new record - like editing, but without WHERE statement and without existing values
+
+    static function actionAdd()
+    {
+        Box::$title = 'Insert: '.Box::$edit;
+        Box::$action = 'add';
+
+        // get table structure
+        $data['columns'] = Table::getColumns(Box::$edit);
+        $data['mode'] = 'add';
+
+        $table = Box::$edit;
         Box::render('edit', $data);
     }
 
 
+
 //----------------------------------------------------------------------------------------------------------------------
+// save is used for editing and adding new records
+
 
     static function actionSave()
     {
         $table = Box::$edit;
         $where = Edit::$where;
+        $mode = $_GET['mode'];
         $bindings = array();
 
         // pass record data in POST and additional data (table and select statement) in GET
@@ -80,6 +101,12 @@ static $where;
         $cmd = "UPDATE `$table`
                 SET $set
                 WHERE $where";
+
+        if ($mode == 'add')
+        {
+            $cmd = "INSERT INTO `$table`
+                    SET $set";
+        }
 
         $q = Box::cmd($cmd);
 
@@ -103,10 +130,22 @@ static $where;
             $q->bindValue(':'.$key, $value);
         }
 
+        // debug
+        //debug ($cmd, $bindings);
+
         $q->execute();
 
         // go back to table
-        Box::redirect(Box::url(array('select'=>$table,'msg'=>'Record has been updated')));
+        if ($mode=='add')
+        {
+            $msg = 'New record has been added';
+        }
+        else
+        {
+            $msg = 'Record has been updated';
+        }
+
+        Box::redirect(Box::url(array('select'=>$table,'msg'=>$msg)));
         return;
     }
 

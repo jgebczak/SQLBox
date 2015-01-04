@@ -25,6 +25,7 @@ class Box {
     static $select;
     static $edit;
     static $delete;
+    static $add;
 
     // filters
     static $limit;
@@ -354,8 +355,9 @@ class Box {
         // add - editing without populating existing content
         if (isset($_REQUEST['add']))
         {
-            Box::$edit  = $_REQUEST['add'];
-            Edit::actionIndex();
+            Box::$add  = $_REQUEST['add'];
+            Box::$edit = $_REQUEST['add'];
+            Edit::actionAdd();
             return;
         }
 
