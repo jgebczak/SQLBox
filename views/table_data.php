@@ -78,6 +78,10 @@
     <!-- =========================================================================================================== -->
     <!-- SELECT, SEARCH AND SORTING -->
 
+
+    <a class='button small' href='<?=Box::url(array('add'=>Box::$select))?>' title='Add new item'>+</a>
+
+
     Search:
     <input placeholder='ie. id>1' class='lg' type='text' id='search' name='search' value="<?=Table::$search?>"/>
 

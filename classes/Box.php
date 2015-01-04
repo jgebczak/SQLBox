@@ -351,6 +351,14 @@ class Box {
             return;
         }
 
+        // add - editing without populating existing content
+        if (isset($_REQUEST['add']))
+        {
+            Box::$edit  = $_REQUEST['add'];
+            Edit::actionIndex();
+            return;
+        }
+
         if (isset($_REQUEST['editsave']))
         {
             Box::$edit  = $_REQUEST['editsave'];
