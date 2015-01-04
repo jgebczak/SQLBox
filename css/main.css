@@ -112,6 +112,12 @@ input[type=submit]
     width:200px;
 }
 
+.button.red
+{
+    background:red;
+    color:white;
+    border-bottom: 2px solid red !important;
+}
 
 .button.small
 {
@@ -126,6 +132,11 @@ input[type=submit]
     background: #9b9fdd;
     border-bottom: 3px solid #8c8fcd;
     color:white;
+}
+
+.button.red:hover
+{
+    background: #ff9999;
 }
 
 .button.selected

@@ -74,8 +74,10 @@
                              Blob data cannot be edited.
                         <?php endif ?>
                     </td>
-                    <td>
-                        <?=$c['COLUMN_COMMENT']?>
+                    <td style='max-width:500px;'>
+                        <div style='text-wrap:unrestricted; word-wrap:break-word'>
+                         <?=$c['COLUMN_COMMENT']?>
+                        </div>
                     </td>
                 </tr>
 
@@ -84,8 +86,9 @@
         </table>
 
         <BR>
-        <input type='submit' class='button small' value='Save'/>
+        <input type='submit' class='button big' value='Save'/>
         <a class='button small' href='<?=Box::url(array('select'=>Box::$edit))?>'>Cancel</a>
+        <a class='button small red' onclick='return confirm("Are you sure?");' href='<?=Box::url(array('delete'=>Box::$edit, 'where'=>Edit::$where))?>'>Delete</a>
 
     </form>
 

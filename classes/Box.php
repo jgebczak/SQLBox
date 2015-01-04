@@ -24,6 +24,7 @@ class Box {
     static $table;
     static $select;
     static $edit;
+    static $delete;
 
     // filters
     static $limit;
@@ -355,6 +356,15 @@ class Box {
             Box::$edit  = $_REQUEST['editsave'];
             Edit::$where = $_REQUEST['where'];
             Edit::actionSave();
+            return;
+        }
+
+        // delete (from any place) - non-ajax call
+        if (isset($_REQUEST['delete']))
+        {
+            Box::$delete  = $_REQUEST['delete'];
+            Delete::$where = $_REQUEST['where'];
+            Delete::actionDelete();
             return;
         }
 
