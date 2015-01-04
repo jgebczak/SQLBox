@@ -8,6 +8,7 @@
             <tr class='header'>
                 <th>Field</th>
                 <th>Value</th>
+                <th>Comment</th>
             </tr>
 
             <?php foreach ($columns as $c): ?>
@@ -45,7 +46,12 @@
                         <?php endif ?>
 
                         <?php if ($type=='set'): ?>
-                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                             <?php
+                                $set_values = explode(',', $v);
+                             ?>
+                             <?php foreach (Edit::getSetValues(Box::$edit,$col) as $i => $set_v): ?>
+                                <?=Html::checkbox($col."[$i]",$set_v,in_array($set_v, $set_values))?>
+                             <?php endforeach ?>
                         <?php endif ?>
 
                         <?php if ($type=='timestamp'): ?>
@@ -67,8 +73,9 @@
                         <?php if ($type=='blob'): ?>
                              Blob data cannot be edited.
                         <?php endif ?>
-
-
+                    </td>
+                    <td>
+                        <?=$c['COLUMN_COMMENT']?>
                     </td>
                 </tr>
 

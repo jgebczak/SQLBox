@@ -82,7 +82,7 @@ class Box {
         $float     = array('float','double','decimal');
         $char      = array('char','varchar');
         $text      = array('text','tinytext','mediumtext','longtext');
-        $blob      = array('blog','mediumblob','longblob','tinyblob');
+        $blob      = array('blob','mediumblob','longblob','tinyblob');
         $date      = array('date');
         $time      = array('time');
         $datetime  = array('datetime');
