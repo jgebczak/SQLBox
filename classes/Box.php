@@ -86,6 +86,7 @@ class Box {
         $text      = array('text','tinytext','mediumtext','longtext');
         $blob      = array('blog','mediumblob','longblob','tinyblob');
         $date      = array('date');
+        $time      = array('time');
         $datetime  = array('datetime');
         $timestamp = array('timestamp');
         $enum      = array('enum');
@@ -101,6 +102,7 @@ class Box {
         if (in_array($t, $timestamp)) return 'timestamp';
         if (in_array($t, $enum))      return 'enum';
         if (in_array($t, $set))       return 'set';
+        if (in_array($t, $time))      return 'time';
     }
 
 

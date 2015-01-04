@@ -15,17 +15,55 @@
             <?php
                 $col  = $c['COLUMN_NAME'];
                 $type = Box::dataType($c['DATA_TYPE']);
-
-                echo $type;
-
                 $v    = $values[$col];
                 $v    = str_replace('"',"&quot;", $v);
+
              ?>
 
                 <tr>
-                    <td><?=$col?></td>
+                    <td style='min-width:130px;'><?=$col?></td>
                     <td>
-                        <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php if ($type=='number' || $type=='float'): ?>
+                             <input type='number' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='char'): ?>
+                             <input style='width:300px' type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='datetime'): ?>
+                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='enum'): ?>
+                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='set'): ?>
+                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='timestamp'): ?>
+                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='date'): ?>
+                             <input type='date' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='time'): ?>
+                             <input type='text' name='<?=$col?>' value="<?=$v?>"/>
+                        <?php endif ?>
+
+                        <?php if ($type=='text'): ?>
+                             <textarea style='width:300px' rows='5' name='<?=$col?>'><?=$v?></textarea>
+                        <?php endif ?>
+
+                        <?php if ($type=='blob'): ?>
+                             Blob data cannot be edited.
+                        <?php endif ?>
+
+
                     </td>
                 </tr>
 
