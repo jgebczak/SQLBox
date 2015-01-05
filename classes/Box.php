@@ -26,6 +26,7 @@ class Box {
     static $edit;
     static $delete;
     static $add;
+    static $sql;
 
     // filters
     static $limit;
@@ -366,6 +367,14 @@ class Box {
             Box::$edit  = $_REQUEST['editsave'];
             Edit::$where = $_REQUEST['where'];
             Edit::actionSave();
+            return;
+        }
+
+        // sql - custom query
+        if (isset($_REQUEST['sql']))
+        {
+            Box::$sql  = $_REQUEST['sql'];
+            SQL::actionIndex();
             return;
         }
 

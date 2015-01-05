@@ -24,14 +24,14 @@
 
         <?php else: ?>
 
-<!--             <div class='container bl_gray_13'>
+            <div class='container bl_gray_13'>
 
-                <a href="#">SQL</a> |
-                <a href="#">Import</a> |
+                <a href="<?=Box::url(array('sql'=>''))?>">SQL</a>
+<!--                 <a href="#">Import</a> |
                 <a href="#">Dump</a>
-
-            </div>
  -->
+            </div>
+
 
 
         <?php include('widgets/sidebar.table_search.php'); ?>

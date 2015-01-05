@@ -14,7 +14,12 @@
 
                     <a href="/"><?=Box::$engine?></a>
 
-                    <?php if (Box::$add): ?>
+                    <?php if (Box::$sql): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
+                        > Custom query
+
+                    <?php elseif (Box::$add): ?>
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
                         > Insert: <?=Box::$add?>

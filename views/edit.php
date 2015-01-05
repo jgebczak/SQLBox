@@ -38,7 +38,7 @@
 
                         <?php if ($type=='enum'): ?>
 
-                            <select name='<?=$col?>'>
+                            <select style='min-width:150px' name='<?=$col?>'>
                                 <?php if ($enum_values = Edit::getEnumValues(Box::$edit, $col)) foreach ($enum_values as $enum_v): ?>
                                     <?=Html::option($enum_v,'',$enum_v,$enum_v==$v)?>
                                 <?php endforeach; ?>
