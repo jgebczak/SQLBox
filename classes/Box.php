@@ -374,7 +374,12 @@ class Box {
         if (isset($_REQUEST['sql']))
         {
             Box::$sql  = $_REQUEST['sql'];
-            SQL::actionIndex();
+
+            if (!Box::$sql)
+                SQL::actionIndex();
+            else
+                SQL::actionProcess();
+
             return;
         }
 

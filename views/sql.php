@@ -15,14 +15,17 @@
 
 <div class='container'>
 
-    <form action="<?=Box::url(array())?>" method='POST' enctype='multipart/form-data'>
+    <!-- QUERY RESULTS -->
 
-    <div id='query'></div>
+    <pre>
+    <?php print_r ($_SESSION['queries']); ?>
+    </pre>
 
-    </form>
+    <!-- QUERY EDITOR -->
 
+    <div id='query'><?=$_SESSION['sql']?></div>
     <div class="clear space15"></div>
-    <input type='submit' class='button big' value='Run Query'/>
+    <a class='button big' href='javascript:submitQuery()'>Run Query</a>
 
 </div>
 
@@ -40,10 +43,23 @@
 <script type="text/javascript">
 //----------------------------------------------------------------------------------------------------------------------
 
-$(document).ready(function(){
-        editor.focus();
-        //editor.getValue();
-});
+    function submitQuery()
+    {
+        var  sql = editor.getValue();
+        $.post("<?=Box::url(array())?>", {sql:sql}, function(response){
+
+            // after running query(ies), reload the page and pull the results from the session
+            if (response == 'ok')
+                window.location.reload();
+
+        })
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    $(document).ready(function(){
+            editor.focus();
+    });
 
 //----------------------------------------------------------------------------------------------------------------------
 </script>
