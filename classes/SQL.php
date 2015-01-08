@@ -24,6 +24,7 @@ class SQL {
 
         $start_time = microtime(true);
         $h->execute();
+
         $end_time = microtime(true);
         $query_time = number_format($end_time - $start_time,3);
 
@@ -40,7 +41,7 @@ class SQL {
         }
 
         // fetch data and detect non-select queries
-        $rows = $h->fetchAll();
+        $rows = $h->fetchAll(PDO::FETCH_ASSOC);
         $error = ($h->errorInfo());
 
         // fetching non-SELECT query?
@@ -83,7 +84,7 @@ class SQL {
         if ($queries) foreach ($queries as $sql)
         {
             if ($sql)
-                SQL::processQuery($sql);
+                 SQL::processQuery($sql);
         }
 
         die('ok');
