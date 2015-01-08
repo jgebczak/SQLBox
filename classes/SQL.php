@@ -21,7 +21,11 @@ class SQL {
     {
         $q = Box::cmd ($sql);
         $h = $q->getHandler();
+
+        $start_time = microtime(true);
         $h->execute();
+        $end_time = microtime(true);
+        $query_time = number_format($end_time - $start_time,3);
 
         // check syntax error
         $error = $h->errorInfo();
@@ -46,6 +50,7 @@ class SQL {
                 'query'         => $sql,
                 'rows_affected' => $h->rowCount(),
                 'non_select'    => 1,
+                'query_time'    => $query_time,
             );
             return;
         }
@@ -54,6 +59,7 @@ class SQL {
             'query'         => $sql,
             'rows'          => $rows,
             'non_select'    => 0,
+            'query_time'    => $query_time,
         );
     }
 
@@ -67,6 +73,10 @@ class SQL {
 
         $sql = Box::$sql;
         $_SESSION['sql'] = $sql;
+
+        $sql = trim($sql,' ');
+        $sql = trim($sql,PHP_EOL);
+        $sql = trim($sql,';');
 
         // split queries and run each one individually with it's own result set
         $queries = explode(';', $sql);

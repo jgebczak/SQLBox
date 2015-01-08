@@ -310,21 +310,11 @@ table.data
     font-size:0.7em;
 }
 
-.space
-{
-    margin-bottom:5px;
-}
-
-.space10
-{
-    margin-bottom:10px;
-}
-
-.space15
-{
-    margin-bottom:15px;
-}
-
+.space   {margin-bottom:5px;}
+.space10 {margin-bottom:10px;}
+.space15 {margin-bottom:15px;}
+.space20 {margin-bottom:20px;}
+.space25 {margin-bottom:25px;}
 
 .pagination a
 {
