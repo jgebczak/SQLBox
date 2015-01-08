@@ -21,7 +21,6 @@ class SQL {
     {
         $q = Box::cmd ($sql);
         $h = $q->getHandler();
-
         $start_time = microtime(true);
         $h->execute();
 
@@ -40,7 +39,29 @@ class SQL {
              return;
         }
 
+        // fetch_assoc, fetch_named,
+        // http://php.net/manual/en/pdostatement.fetch.php
+
         // fetch data and detect non-select queries
+        /*
+            CONTINUE: SOLVE PROBLEM WITH JOIN QUERIES (fields with same name ie. id are merged)
+            SELECT * FROM users JOIN profiles
+
+            so far works:
+            - FETCH_NAMED
+            - FETCH_NUM with getColumnMeta
+
+        */
+
+        // TEST ********************************************
+        $r = $h->fetchAll(PDO::FETCH_NUM);
+        $_SESSION['r'] = $r;
+        $m0 = $h->getColumnMeta(0);
+        $m11 = $h->getColumnMeta(10);
+        debug ($m0,$m11);
+        // TEST ********************************************
+
+
         $rows = $h->fetchAll(PDO::FETCH_ASSOC);
         $error = ($h->errorInfo());
 

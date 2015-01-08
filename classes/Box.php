@@ -41,6 +41,18 @@ class Box {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    static function test()
+    {
+        $_REQUEST['user'] = 'root';
+        $_REQUEST['db'] = 'rick';
+        Box::connect();
+        SQL::processQuery('select * from users join profiles');
+        die();
+    }
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
     static function isLogged()
     {
         return $_REQUEST['user'];
@@ -206,7 +218,7 @@ class Box {
             Box::$user   = $user;
             Box::$server = $server;
             Box::$engine = $engine;
-            Box::$db     = $db;
+            Box::$db     = $_REQUEST['db'];
         }
     }
 
@@ -298,6 +310,14 @@ class Box {
         {
             Box::$action='debug';
             Box::debug();
+            return;
+        }
+
+        // test mode
+        if (isset($_REQUEST['test']) && isDev())
+        {
+            Box::$action='test';
+            Box::test();
             return;
         }
 
