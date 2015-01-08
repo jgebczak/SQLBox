@@ -131,6 +131,7 @@
                     <td>
                         <a href='<?=Box::url(array('edit'=>Box::$select,'where'=>$primary_key.'='.$row[$primary_key]))?>'><i class="fa fa-pencil-square-o"></i></a>
                     </td>
+
                     <?php foreach ($row as $key => $value): ?>
                         <td>
                             <xmp style='<?=Box::format($value,$columns[$key])?>'><?=Box::value($value,$columns[$key])?></xmp>

@@ -29,8 +29,6 @@
     <?php
       // query, rows, non_select,rows_affected
 
-    //debug ($_SESSION['queries']);
-
      ?>
 
     <?php
@@ -86,9 +84,9 @@
         <table border='1' class='data' id='columns'>
 
                 <tr class='header'>
-                    <th>
-
-                    </th>
+                    <?php if (0):?>
+                    <th></th>
+                    <?php endif; ?>
                 <?php foreach ($query['rows'][0] as $kname => $c): ?>
                     <th class='column'><?=$kname?></th>
                 <?php endforeach ?>
@@ -97,9 +95,11 @@
                 <?php foreach ($query['rows'] as $row): ?>
 
                     <tr>
+                        <?php if (0):?>
                         <td>
                             <a href='#'><i class="fa fa-pencil-square-o"></i></a>
                         </td>
+                        <?php endif; ?>
                         <?php foreach ($row as $key => $value): ?>
                             <td>
                                 <xmp><?=$value?></xmp>
