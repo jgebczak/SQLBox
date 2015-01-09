@@ -46,7 +46,8 @@ class Box {
         $_REQUEST['user'] = 'root';
         $_REQUEST['db'] = 'rick';
         Box::connect();
-        SQL::processQuery('select * from users join profiles');
+         //SQL::processQuery('select id,1 from users');
+         SQL::processQuery('select * from users join profiles');
         die();
     }
 

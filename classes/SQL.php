@@ -39,30 +39,22 @@ class SQL {
              return;
         }
 
-        // fetch_assoc, fetch_named,
-        // http://php.net/manual/en/pdostatement.fetch.php
+        $rows = $h->fetchAll(PDO::FETCH_NUM);
+        $tname = '';
+        $multitable = 0;
 
-        // fetch data and detect non-select queries
-        /*
-            CONTINUE: SOLVE PROBLEM WITH JOIN QUERIES (fields with same name ie. id are merged)
-            SELECT * FROM users JOIN profiles
+        // populate information about columns involved
+        if ($rows[0]) foreach ($rows[0] as $i => $r)
+        {
+            $c = $h->getColumnMeta($i);
 
-            so far works:
-            - FETCH_NAMED
-            - FETCH_NUM with getColumnMeta
+            // detect if more than one table is involved
+            if ($tname && $tname != $c['table']) $multitable = 1;
+            $tname = $c['table'];
+            $name = $c;
+            $columns[$i] = $c;
+        }
 
-        */
-
-        // TEST ********************************************
-        $r = $h->fetchAll(PDO::FETCH_NUM);
-        $_SESSION['r'] = $r;
-        $m0 = $h->getColumnMeta(0);
-        $m11 = $h->getColumnMeta(10);
-        debug ($m0,$m11);
-        // TEST ********************************************
-
-
-        $rows = $h->fetchAll(PDO::FETCH_ASSOC);
         $error = ($h->errorInfo());
 
         // fetching non-SELECT query?
@@ -77,11 +69,14 @@ class SQL {
             return;
         }
 
+        // standard SELECT query
         $_SESSION['queries'][] = array(
             'query'         => $sql,
             'rows'          => $rows,
+            'columns'       => $columns,
             'non_select'    => 0,
             'query_time'    => $query_time,
+            'multitable'    => $multitable,
         );
     }
 

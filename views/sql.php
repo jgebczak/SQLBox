@@ -87,8 +87,18 @@
                     <?php if (0):?>
                     <th></th>
                     <?php endif; ?>
-                <?php foreach ($query['rows'][0] as $kname => $c): ?>
-                    <th class='column'><?=$kname?></th>
+                <?php foreach ($query['rows'][0] as $col_id => $c): ?>
+                    <?php
+                        $col = $query['columns'][$col_id];
+                        $col_name = $col['name'];
+
+                        // if multiple tables are involed (join),prefix the col name with table name
+                        if ($query['multitable'] && $col['table'])
+                            $col_name = $col['table'].'.'.$col_name;
+                    ?>
+                    <th class='column'>
+                        <?=$col_name?>
+                    </th>
                 <?php endforeach ?>
                 </tr>
 
