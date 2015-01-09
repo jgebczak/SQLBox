@@ -84,9 +84,6 @@
         <table border='1' class='data' id='columns'>
 
                 <tr class='header'>
-                    <?php if (0):?>
-                    <th></th>
-                    <?php endif; ?>
                 <?php foreach ($query['rows'][0] as $col_id => $c): ?>
                     <?php
                         $col = $query['columns'][$col_id];
@@ -105,14 +102,14 @@
                 <?php foreach ($query['rows'] as $row): ?>
 
                     <tr>
-                        <?php if (0):?>
-                        <td>
-                            <a href='#'><i class="fa fa-pencil-square-o"></i></a>
-                        </td>
-                        <?php endif; ?>
-                        <?php foreach ($row as $key => $value): ?>
+                        <?php foreach ($row as $col_id => $value): ?>
+                        <?php $col = $query['columns'][$col_id]; ?>
                             <td>
-                                <xmp><?=$value?></xmp>
+                                <?php if (in_array('primary_key', $col['flags']) && $col['table']): ?>
+                                    <a href='<?=Box::url(array('edit'=>$col['table'],'where'=>$col['name'].'='.$value))?>'><xmp><?=$value?></xmp></a>
+                                <?php else: ?>
+                                    <xmp><?=$value?></xmp>
+                                <?php endif ?>
                             </td>
                         <?php endforeach ?>
                     </tr>
