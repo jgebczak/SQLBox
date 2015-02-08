@@ -8,7 +8,7 @@
         <i style='color:white' class="fa fa-search fa-stack-1x"></i>
     </span>
 
-    <input type='text' id='table_search' placeholder='Find Table...' />
+    <input type='text' style='width:170px' id='table_search' placeholder='Find Table...' />
 </div>
 
 

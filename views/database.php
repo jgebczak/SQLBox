@@ -105,6 +105,9 @@ $(document).ready(function(){
      // up/down navigation
      $(document).keydown(function (event){
 
+                // active only if table search menu is active
+                if (!$('#search').is(':focus')) return;
+
                 var key = event.which;
                 var isSelected = $("#tables tr.selected").size()>0;
                 var cur = $("#tables tr.selected");

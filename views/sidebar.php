@@ -39,7 +39,7 @@
         <!-- LIST OF TABLES -->
 
             <div style='text-align:center'>
-                <a style='font-size:0.9em; color:purple' href="<?=Box::url(array('create'=>''))?>">+ Create new table</a>
+                <a style='font-size:0.9em; color:purple' href="<?=Box::url(array('alter'=>''))?>">+ Create new table</a>
             </div>
 
             <div class='container bl_gray_13 sidebar_tables'>
@@ -49,7 +49,7 @@
                     <?php foreach ($tables as $t): ?>
 
                         <div class='sidebar_table' data-name='<?=$t?>'>
-                            <a class='gray8' href="<?=Box::url(array('select'=>$t))?>">select</a> <a href="<?=Box::url(array('table'=>$t))?>"><?=$t?></a>
+                            <a class='gray8' href="<?=Box::url(array('select'=>$t))?>">select</a> <a href="<?=Box::url(array('table'=>$t))?>"><?=Helper::shorten($t,17)?></a>
                         </div>
 
                     <?php endforeach ?>

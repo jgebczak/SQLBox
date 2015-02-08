@@ -27,6 +27,7 @@ class Box {
     static $delete;
     static $add;
     static $sql;
+    static $alter;
 
     // filters
     static $limit;
@@ -388,6 +389,14 @@ class Box {
             Box::$edit  = $_REQUEST['editsave'];
             Edit::$where = $_REQUEST['where'];
             Edit::actionSave();
+            return;
+        }
+
+        // create/edit new table
+        if (isset($_REQUEST['alter']))
+        {
+            Box::$alter  = $_REQUEST['alter'];
+            Alter::actionEdit();
             return;
         }
 
