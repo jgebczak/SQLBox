@@ -28,6 +28,7 @@ class Box {
     static $add;
     static $sql;
     static $alter;
+    static $create;
 
     // filters
     static $limit;
@@ -392,7 +393,23 @@ class Box {
             return;
         }
 
-        // create/edit new table
+        // creat new table
+        if (isset($_REQUEST['create']))
+        {
+            Box::$create  = $_REQUEST['create'];
+            Alter::actionCreate();
+            return;
+        }
+
+        // ajax call
+        if (isset($_REQUEST['createsave']))
+        {
+            Box::$create  = $_REQUEST['createsave'];
+            Alter::actionCreateSave();
+            return;
+        }
+
+        // edit table
         if (isset($_REQUEST['alter']))
         {
             Box::$alter  = $_REQUEST['alter'];

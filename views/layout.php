@@ -19,6 +19,16 @@
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
                         > Custom query
 
+                    <?php elseif (Box::$create): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
+                        > Create new table
+
+                    <?php elseif (Box::$alter): ?>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
+                        > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
+                        > Alter table: <?=Box::$alter?>
+
                     <?php elseif (Box::$add): ?>
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>">Server</a>
                         > <a href="/?user=<?=Box::$user?>&server=<?=Box::$server?>&db=<?=Box::$db?>"><?=Box::$db?></a>
