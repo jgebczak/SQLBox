@@ -38,10 +38,10 @@
 
         <!-- LIST OF TABLES -->
 
-            <div style='text-align:center'>
+<!--             <div style='text-align:center'>
                 <a style='font-size:0.9em; color:purple' href="<?=Box::url(array('create'=>''))?>">+ Create new table</a>
             </div>
-
+ -->
             <div class='container bl_gray_13 sidebar_tables'>
 
                 <?php if ($tables = Box::getTables()): ?>

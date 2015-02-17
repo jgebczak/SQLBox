@@ -72,7 +72,7 @@
         <?php if (isDev()): ?>
 
             $("#login").val('root');
-            $("#pass").val('CocaCola');
+            //$("#pass").val('');
 
         <?php endif; ?>
 

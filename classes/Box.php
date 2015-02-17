@@ -4,7 +4,7 @@ class Box {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    static $ver = '0.1';
+    static $ver = '0.21';
 
     // db handler
     static $dbh;
@@ -46,10 +46,10 @@ class Box {
     static function test()
     {
         $_REQUEST['user'] = 'root';
-        $_REQUEST['db'] = 'rick';
+        $_REQUEST['db'] = 'mysql';
         Box::connect();
-         //SQL::processQuery('select id,1 from users');
-         SQL::processQuery('select * from users join profiles');
+        //SQL::processQuery('select id,1 from users');
+        SQL::processQuery('select * from user');
         die();
     }
 

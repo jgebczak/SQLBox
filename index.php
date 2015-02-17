@@ -17,7 +17,6 @@ PT::import('engines/*');
 PT::debugMode(PT::ip()=='127.0.0.1'?1:0);
 
 PT::on('error.404',function(){echo 'Whoops, page not found!';});
-PT::on('test',function(){echo 'works!';});
 
 PT::routeAll('Box.route');
 PT::on('pt.start','Box::connect');
